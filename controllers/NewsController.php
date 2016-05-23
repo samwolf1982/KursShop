@@ -26,12 +26,12 @@ include_once ( SITE_ROOT.'/views/news/index.php');
 		return true;
 	}
 	// показать одиночную новость
-		public function actionView($category,$id)
+		public function actionView($id)
 	{
 		# code...
 		//echo 'Singel news'.PHP_EOL;
 				 $news=News::getNewsItemId($id);
- 
+ include_once ( SITE_ROOT.'/views/news/singleNews.php');
 //      print_r($news);
 		return true;
 

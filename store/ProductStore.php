@@ -2,7 +2,7 @@
 /**
 *  класс для имитации бд
 */
-class NewsStore
+class ProductStore
 {
 	private $id;
 	private $title;
@@ -10,8 +10,9 @@ class NewsStore
 	private $short_content;
 	 private $full_content;
 	 private $author;
+	 private $image;
 
-	function __construct($id,$title,$date,$short_content,$full_content,$author)
+	function __construct($id,$title,$date,$short_content,$full_content,$author,$image)
 	{
 		# code...
 		$this->id=$id;
@@ -20,6 +21,7 @@ class NewsStore
 		$this->short_content=$short_content;
 		$this->full_content=$full_content;
 		$this->author=$author;
+		$this->image=$image;
 	}
 	public function get_id()
 	{
@@ -50,6 +52,11 @@ class NewsStore
 	{
 		# code...
 		return $this->author;
+	}
+		public function get_image()
+	{
+		# code...
+		return $this->image;
 	}
 }
 

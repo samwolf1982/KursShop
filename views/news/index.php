@@ -10,8 +10,10 @@ include_once SITE_ROOT.'/views/common/header.php';
                             <!-- $newsList из контролера   -->
                             <!-- сокращенная запись -->
             <?php foreach ($newsList as $value):?>
+
             <h3><?php echo $value->get_title(); ?></h3>
-            <p>Please read our shipping policy. Click <a href="#">here</a></p>
+            <p><?php echo $value->get_date(); ?></p>
+            <p> <?php echo $value->get_short_content(); ?> <a href=<?php echo '/news/'.$value->get_id(); ?>>читать дальше...</a></p>
              
               <?php endforeach; ?>
             

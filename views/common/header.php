@@ -65,7 +65,7 @@ ddsmoothmenu.init({
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" class="selected">Products</a>
+                <li><a href="products.html" class="selected">Товары</a>
                     <ul>
                         <li><a href="#submenu1">Sub menu 1</a></li>
                         <li><a href="#submenu2">Sub menu 2</a></li>
@@ -81,7 +81,7 @@ ddsmoothmenu.init({
                         <li><a href="#submenu5">Sub menu 5</a></li>
                   </ul>
                 </li>
-                <li><a href="news">Новости</a></li>
+                <li><a href="/news">Новости</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
