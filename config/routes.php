@@ -7,6 +7,8 @@ return $arrayName = array(
                            'products'=>'products/list',  //// метод аction_list в контролере ProductConttroler
                              'product/([a-z]+)/([0-9]+)'=>'product/view/$1/$2', // второй уровень использовано регулярное выражение для  определения ид записи
                             'product/([([0-9]+)'=>'product/view/$1/', // 
+                           'about'=>'about/view',// 
+
 
                            );
 ?>

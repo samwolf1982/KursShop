@@ -67,19 +67,19 @@ ddsmoothmenu.init({
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html" class="selected">Товары</a>
                     <ul>
-                        <li><a href="#submenu1">Sub menu 1</a></li>
-                        <li><a href="#submenu2">Sub menu 2</a></li>
-                        <li><a href="#submenu3">Sub menu 3</a></li>
+                        <li><a href="/product/1">Товар 1</a></li>
+                        <li><a href="/product/5">Товар 2</a></li>
+                        <li><a href="/product/9">Товар 3</a></li>
                   </ul>
                 </li>
-                <li><a href="about.html">About</a>
-                    <ul>
+                <li><a href="/about">Про нас</a>
+               <!--      <ul>
                         <li><a href="#submenu1">Sub menu 1</a></li>
                         <li><a href="#submenu2">Sub menu 2</a></li>
                         <li><a href="#submenu3">Sub menu 3</a></li>
                         <li><a href="#submenu4">Sub menu 4</a></li>
                         <li><a href="#submenu5">Sub menu 5</a></li>
-                  </ul>
+                  </ul> -->
                 </li>
                 <li><a href="/news">Новости</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
