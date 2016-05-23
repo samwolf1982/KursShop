@@ -17,8 +17,10 @@ class NewsController
 		# code...
 		 $newsList=array();
 		 $newsList=News::getNewsList();
-      echo "List News ".PHP_EOL;
-      print_r($newsList);
+include_once ( SITE_ROOT.'/views/news/index.php');
+
+     // echo "List News ".PHP_EOL;
+      //print_r($newsList);
 		// var_dump($newsList);
 		//echo "List news"; 
 		return true;
@@ -27,10 +29,10 @@ class NewsController
 		public function actionView($category,$id)
 	{
 		# code...
-		echo 'Singel news'.PHP_EOL;
+		//echo 'Singel news'.PHP_EOL;
 				 $news=News::getNewsItemId($id);
  
-      print_r($news);
+//      print_r($news);
 		return true;
 
 	}
