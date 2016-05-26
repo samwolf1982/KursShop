@@ -8,11 +8,22 @@ class ProductStore
 	private $title;
 	private $date;
 	private $short_content;
-	 private $full_content;
-	 private $author;
-	 private $image;
+	private $full_content;
+	private $author;
+	private $image;
 
-	function __construct($id,$title,$date,$short_content,$full_content,$author,$image)
+	private $name;
+	private $cat_id;
+	private $code;
+	private $avalibily;
+	private $brand;
+	private $is_new;
+	private $is_recomendet;
+	private $status;
+	
+
+
+	function __construct($id,$title,$date,$short_content,$full_content,$author,$image , $name,$cat_id,$code,$avalibily,$brand,$is_new,$is_recomendet,$status )
 	{
 		# code...
 		$this->id=$id;
@@ -22,7 +33,60 @@ class ProductStore
 		$this->full_content=$full_content;
 		$this->author=$author;
 		$this->image=$image;
+
+		$this->name=$name;
+		$this->cat_id=$cat_id;
+		$this->code=$code;
+		$this->avalibily=$avalibily;
+		$this->brand=$brand;
+		$this->is_new=$is_new;
+		$this->is_recomendet=$is_recomendet;
+		$this->status=$status;
+
 	}
+       public function get_status()
+	{
+		# code...
+		return $this->status;
+	}
+     public function get_name()
+	{
+		# code...
+		return $this->name;
+	}
+	public function get_cat_id()
+	{
+		# code...
+		return $this->cat_id;
+	}
+	public function get_is_new()
+	{
+		# code...
+		return $this->is_new;
+	}
+	public function get_is_recomendet()
+	{
+		# code...
+		return $this->is_recomendet;
+	}
+	public function get_brand()
+	{
+		# code...
+		return $this->brand;
+	}
+	public function get_avalibily()
+	{
+		# code...
+		return $this->avalibily;
+	}
+	public function get_code()
+	{
+		# code...
+		return $this->code;
+	}
+
+
+//-----------
 	public function get_id()
 	{
 		# code...
