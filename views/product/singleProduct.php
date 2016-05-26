@@ -1,10 +1,17 @@
 <?php
 
 include_once SITE_ROOT.'/views/common/header.php';
+
 ?>
       <div id="content" class="float_r">
         	
-            <h1><?php echo $product->get_title()?></h1>,
+
+
+            <h1><?php 
+              
+            echo $product->get_title();
+
+            ?></h1>,
 
 
 

@@ -1,6 +1,7 @@
 <?php
 include_once SITE_ROOT.'/store/NewsStore.php';
 include_once SITE_ROOT.'/store/ProductStore.php';
+include_once SITE_ROOT.'/store/Category.php';
 /**
 *  класс для имитации бд
 */
@@ -8,12 +9,14 @@ class Store
 {
 	private $newsContent;
 	private $productContent;
+	private $categoryContent;
 
 	function __construct()
 	{
 		# code... // cоздание случайных десять записей
 $this->newsContent=array();
 $this->productContent=array();
+$this->categoryContent=array();
 		for ($i=0; $i <10 ; $i++) { 
 	         		# code...
              $obj= new NewsStore($i,'Lorem'.$i,'05 10 2016','Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
@@ -57,6 +60,17 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
              
              $this->productContent[]=$obj;  
 		}
+
+					//    тоже самое но создаем категорию
+				# code... // cоздание случайных десять категорий
+$this->categoryContent=array();
+		for ($i=0; $i <10 ; $i++) { 
+	         		# code...
+             $obj= new CategoryStore($i,'Lorem'.$i,'05 10 2016','Lorem ipsum ',
+       'Lorem ipsu','01.jpg',0,1,'category-name '.$i);
+             
+             $this->categoryContent[]=$obj;  
+		}
 	
 	
 	}
@@ -72,6 +86,13 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
 		# code...
 
 		if(isset($this->productContent[$id])) return $this->productContent[$id];
+		else return null;
+	}
+		public function get_category_id($id)
+	{
+		# code...
+
+		if(isset($this->categoryContent[$id])) return $this->categoryContent[$id];
 		else return null;
 	}
 

@@ -20,7 +20,7 @@ class ProductController
 
 		# code...
 			# code...
-				$product=Product::getNewsItemId($id);
+				$product=Product::get_product_Item_Id($id);
  include_once ( SITE_ROOT.'/views/product/singleProduct.php');
 //      print_r($news);
 		return true;

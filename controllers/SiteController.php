@@ -1,6 +1,7 @@
 <?php 
+include_once ( SITE_ROOT.'/models/Category.php');
  /**
- * 
+ *  отображение главной страницы
  */
  class SiteController
  {
@@ -14,8 +15,8 @@
 	{
 		//echo "SiteController actionIndex";
 		# code...
-		/* $newsList=array();
-		 $newsList=News::getNewsList();*/
+		 $categotyList=array();
+		 $categotyList=Category::get_Categort_List();
 include_once ( SITE_ROOT.'/views/site/main_page.php');
 
      // echo "List News ".PHP_EOL;

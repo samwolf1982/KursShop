@@ -9,6 +9,7 @@ error_reporting(E_ALL);
 define('SITE_ROOT', dirname(__FILE__));
 
 require_once ( SITE_ROOT.'/components/Router.php');
+
 // 3 подключение к бд
 //cоздать дефайны как в опенкарте для работы с бд добавить файл настроек в конфигах
 

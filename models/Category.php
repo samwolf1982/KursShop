@@ -5,7 +5,7 @@ include_once (SITE_ROOT.'/store/Store.php');
 /**
 * класс модели News
 */
-class Product 
+class Category 
 {
    
 
@@ -16,24 +16,23 @@ class Product
 	}
 
 	/**
-	*    возвращает новость по ид
+	*    возвращает категорию по ид
 	*/
-	public static  function get_product_Item_Id($id)
+	public static  function get_Category_Id($id)
 	{
-
 		# code...
 		 $localStore=new Store(); // локальное хранилище
+
 	
-	
-           return $localStore->get_product_id($id);
+           return $localStore->get_category_id($id);
  
 
 	}
 
      /**
-	*    возвращает новость список новостей
+	*    возвращает список  категорий
 	*/
-		public static  function getNewsList()
+		public static  function get_Categort_List()
 	{
 		# code...
 		  $localStore=new Store(); // локальное хранилище
@@ -41,7 +40,7 @@ class Product
 		$arr=array();
             for ($i=0; $i < 10; $i++) { 
             	# code...
-               $arr[]= $localStore->get_product_id($i);
+               $arr[]= $localStore->get_category_id($i);
               // var_dump($localStore->get_news_id($i));
             }
             return $arr;
