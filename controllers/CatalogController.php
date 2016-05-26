@@ -4,7 +4,7 @@ include_once ( SITE_ROOT.'/models/Product.php');
  /**
  *  отображение главной страницы
  */
- class SiteController
+ class CatalogController
  {
  	
  	function __construct($argument='')
@@ -20,8 +20,8 @@ include_once ( SITE_ROOT.'/models/Product.php');
 		 $categotyList=Category::get_Categort_List();
 		 $producList=array();
 		                         //     количество продуктов
-		 $producList=Product::get_news_products(9);
-          include_once ( SITE_ROOT.'/views/site/main_page.php');
+		 $producList=Product::get_news_products(20);
+          include_once ( SITE_ROOT.'/views/catalog/catalog_page.php');
 
      // echo "List News ".PHP_EOL;
       //print_r($newsList);

@@ -43,6 +43,18 @@ ddsmoothmenu.init({
 <script src="js/jquery.timers-1.2.js" type="/template/text/javascript"></script>
 
 </head>
+<?php
+
+                     //   from language.php
+  //  $translate        
+
+
+
+  $translate =include (SITE_ROOT.'/components/language.php');
+
+
+?>
+
 
 <body>
 
@@ -55,7 +67,7 @@ ddsmoothmenu.init({
         </div>
         
         <div id="header_right">
-	        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#">My Cart</a> | <a href="#">Checkout</a> | <a href="#">Log In</a>            
+	        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#"><?php echo $translate['cart'];  ?></a> | <a href="#">Checkout</a> | <a href="#">Log In</a>            
 		</div>
         
         <div class="cleaner"></div>
@@ -64,8 +76,8 @@ ddsmoothmenu.init({
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="products.html" class="selected">Товары</a>
+                <li><a href="/"><?php echo $translate['home'];  ?></a></li>
+                <li><a href="/catalog" class="selected"><?php echo $translate['catalog'];  ?></a>
                     <ul>
                         <li><a href="/product/1">Товар 1</a></li>
                         <li><a href="/product/5">Товар 2</a></li>

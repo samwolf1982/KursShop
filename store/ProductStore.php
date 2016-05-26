@@ -20,10 +20,12 @@ class ProductStore
 	private $is_new;
 	private $is_recomendet;
 	private $status;
+	private $price;
+
 	
 
 
-	function __construct($id,$title,$date,$short_content,$full_content,$author,$image , $name,$cat_id,$code,$avalibily,$brand,$is_new,$is_recomendet,$status )
+	function __construct($id,$title,$date,$short_content,$full_content,$author,$image , $name,$cat_id,$code,$avalibily,$brand,$is_new,$is_recomendet,$status,$price )
 	{
 		# code...
 		$this->id=$id;
@@ -42,7 +44,13 @@ class ProductStore
 		$this->is_new=$is_new;
 		$this->is_recomendet=$is_recomendet;
 		$this->status=$status;
+		$this->price=$price;
 
+	}
+	   public function get_price()
+	{
+		# code...
+		return $this->price;
 	}
        public function get_status()
 	{

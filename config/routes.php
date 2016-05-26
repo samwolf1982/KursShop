@@ -8,7 +8,9 @@ return $arrayName = array(
                              'product/([a-z]+)/([0-9]+)'=>'product/view/$1/$2', // второй уровень использовано регулярное выражение для  определения ид записи
                             'product/([([0-9]+)'=>'product/view/$1/', // 
                            'about'=>'about/view',// 
+                            'catalog'=>'catalog/index',// 
                            ''=>'site/index',  // при пустом запросе контролер SiteControler вызов actionIndex
+
 
 
                            );

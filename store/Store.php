@@ -7,17 +7,21 @@ include_once SITE_ROOT.'/store/Category.php';
 */
 class Store
 {
-	private $newsContent;
+	private $newsContent;       
 	private $productContent;
 	private $categoryContent;
 
+	private $count_newsContent=10;       
+	private $count_productContent=80;
+	private $count_categoryContent=15;
+    
 	function __construct()
 	{
 		# code... // cоздание случайных десять записей
 $this->newsContent=array();
 $this->productContent=array();
 $this->categoryContent=array();
-		for ($i=0; $i <10 ; $i++) { 
+		for ($i=0; $i <$this->count_newsContent ; $i++) { 
 	         		# code...
              $obj= new NewsStore($i,'Lorem'.$i,'05 10 2016','Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
 
@@ -48,7 +52,7 @@ Ut nam vitae nullam accommodare, docendi periculis instructior qui no, pri vero 
 			//    тоже самое но создаем продукт
 				# code... // cоздание случайных десять продуктов
 $this->productContent=array();
-		for ($i=0; $i <10 ; $i++) { 
+		for ($i=0; $i <$this->count_productContent ; $i++) { 
 	         		# code...
              $obj= new ProductStore($i,'Lorem'.$i,'05 10 2016','Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
 
@@ -56,7 +60,7 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
        'Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
 
 Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui denique pertinacia, vel stet dolore scripserit cu. Cibo epicuri ei vis, ei omnes imperdiet pertinacia sed. Ne quo populo splendide. Pri ut apeirian indoctum disputationi, at per causae adipiscing, et movet tantas ius. Eu ubique doming vulputate qui.'
-,'admin or user','01.jpg','name_'.$i,$i*5,$i*5+3,1,'brand_'.$i,1,1,1);
+,'admin or user','01.jpg','name_'.$i,$i*5,$i*5+3,1,'brand_'.$i,1,1,1,($i+1)*7);
              
              $this->productContent[]=$obj;  
 		}
@@ -65,7 +69,7 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
 					//    тоже самое но создаем категорию
 				# code... // cоздание случайных десять категорий
 $this->categoryContent=array();
-		for ($i=0; $i <10 ; $i++) { 
+		for ($i=0; $i <$this->count_categoryContent ; $i++) { 
 	         		# code...
              $obj= new CategoryStore($i,'Lorem'.$i,'05 10 2016','Lorem ipsum ',
        'Lorem ipsu','01.jpg',0,1,'category-name '.$i);

@@ -31,15 +31,16 @@ class Product
 	}
 
      /**
-	*    возвращает новость список новостей
+	*    возвращает список новых продуктов для главной странички
 	*/
-		public static  function getNewsList()
+		public static  function get_news_products($count)
 	{
 		# code...
 		  $localStore=new Store(); // локальное хранилище
 
 		$arr=array();
-            for ($i=0; $i < 10; $i++) { 
+		                  // будет указывться в запросе  
+            for ($i=0; $i < $count; $i++) { 
             	# code...
                $arr[]= $localStore->get_product_id($i);
               // var_dump($localStore->get_news_id($i));
