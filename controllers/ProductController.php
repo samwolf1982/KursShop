@@ -1,4 +1,5 @@
 <?php
+include_once ( SITE_ROOT.'/models/Category.php');
 include_once ( SITE_ROOT.'/models/Product.php');
 /**
 *      класс контролен для обработки news
@@ -20,6 +21,9 @@ class ProductController
 
 		# code...
 			# code...
+
+			    $categotyList=array();
+		        $categotyList=Category::get_Categort_List();
 				$product=Product::get_product_Item_Id($id);
  include_once ( SITE_ROOT.'/views/product/singleProduct.php');
 //      print_r($news);

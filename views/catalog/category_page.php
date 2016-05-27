@@ -119,7 +119,7 @@ include_once SITE_ROOT.'/views/common/header.php';
         </div>
         <div id="content" class="float_r">
                 <!-- цикл для списка новых товаров -->
-        	<h1> <?php echo $translate['category'];  echo " ".$categotyList[0]->get_name(); ?> </h1>
+        	<h1> <?php echo $translate['category'];  echo " ".$categoty_name; ?> </h1>
 <?php
        $counter=0;
  foreach ($producList as $key => $value): ?>
@@ -138,8 +138,9 @@ include_once SITE_ROOT.'/views/common/header.php';
 
 <?php endforeach ?>
 
-    
+                <?php echo $pagination->get(); ?> 
         </div> 
+      
         <div class="cleaner"></div>
     </div> <!-- END of templatemo_main -->
     

@@ -21,11 +21,13 @@ class ProductStore
 	private $is_recomendet;
 	private $status;
 	private $price;
+	private $model;
+	private $manufactured;
 
 	
 
 
-	function __construct($id,$title,$date,$short_content,$full_content,$author,$image , $name,$cat_id,$code,$avalibily,$brand,$is_new,$is_recomendet,$status,$price )
+	function __construct($id,$title,$date,$short_content,$full_content,$author,$image , $name,$cat_id,$code,$avalibily,$brand,$is_new,$is_recomendet,$status,$price,$model,$manufactured )
 	{
 		# code...
 		$this->id=$id;
@@ -45,7 +47,20 @@ class ProductStore
 		$this->is_recomendet=$is_recomendet;
 		$this->status=$status;
 		$this->price=$price;
+			$this->model=$model;
+			$this->manufactured=$manufactured;
 
+	}
+
+	   public function get_manufactured()
+	{
+		# code...
+		return $this->manufactured;
+	}
+	   public function get_model()
+	{
+		# code...
+		return $this->model;
 	}
 	   public function get_price()
 	{

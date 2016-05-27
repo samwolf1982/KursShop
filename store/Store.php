@@ -12,7 +12,7 @@ class Store
 	private $categoryContent;
 
 	private $count_newsContent=10;       
-	private $count_productContent=80;
+	private $count_productContent=800;
 	private $count_categoryContent=15;
     
 	function __construct()
@@ -60,7 +60,7 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
        'Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
 
 Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui denique pertinacia, vel stet dolore scripserit cu. Cibo epicuri ei vis, ei omnes imperdiet pertinacia sed. Ne quo populo splendide. Pri ut apeirian indoctum disputationi, at per causae adipiscing, et movet tantas ius. Eu ubique doming vulputate qui.'
-,'admin or user','01.jpg','name_'.$i,rand(0,$this->count_categoryContent),$i*5+3,1,'brand_'.$i,1,1,1,($i+1)*7);
+,'admin or user','01.jpg','name_'.$i,rand(0,$this->count_categoryContent),$i*5+3,1,'brand_'.$i,1,1,1,($i+1)*7,'model-'.rand(0,999),'Lorem Manuf-'.rand(1,10));
              
              $this->productContent[]=$obj;  
 		}

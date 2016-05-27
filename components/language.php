@@ -10,7 +10,17 @@ return array('categoryes' =>'Категории',
 	          'catalog'=>'Каталог товаров',
 	          'home'=>'Главная',
 	          'all_products'=>'Все товары',
-	          'recomended'=>'Рекомендуемые');
+	          'recomended'=>'Рекомендуемые',
+	          'price'=>'Цена',
+	          'availability'=>'Наличие',
+	          'model'=>'Модель',
+	          'manufactured'=>'Производитель',
+	          'quantity'=>'Количество',
+	          'in_stock'=>'есть на складе',
+	          'out_stock'=>'нет на складе',
+	          'add_to_cart'=>'Добавить в корзину',
+	          'product_description'=>'Описание',
+	           );
 
 
   ?>

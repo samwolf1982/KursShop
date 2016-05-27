@@ -5,6 +5,7 @@ return $arrayName = array(
 
                            'news' => 'news/index',   // метод аction_index в контролере NewsConttroler
                            'products'=>'products/list',
+                           'category/([0-9]+)/page-([0-9]+)'=>'catalog/category/$1/$2', 
 
  'category/([0-9]+)'=>'catalog/category/$1', 
                              //// метод аction_list в контролере ProductConttroler

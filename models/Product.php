@@ -2,6 +2,7 @@
 
 // имитация бд
 include_once (SITE_ROOT.'/store/Store.php');
+
 /**
 * класс модели News
 */
@@ -50,7 +51,7 @@ class Product
 	}
 
         // возврат списка продуктов одной категории
-	public static function get_category_products($id)
+	public static function get_category_products($id,$page)
 	{
 		# code...
 
@@ -59,11 +60,20 @@ class Product
 
 		$arr=array();
 		                  // будет указывться в запросе  where
-		// cейчас  просто в цикле проверка на принадлежнос к как.
+		// cейчас  просто в цикле проверка на принадлежнос к как.  
+		//     ++ OFSET  
+		$limit=9;    
+		$ofset=  $page==1?0:$limit*$page;
+		$counter=0;
 		foreach ($localStore->get_all_products() as $key => $value) {
 			# code...
                     if( $value->get_cat_id()==$id){
-                    	 $arr[]=$value;
+                         
+                        if(($counter++)>=$ofset)$arr[]=$value;
+                        if(count($arr)==$limit)break;
+                         
+
+                    	 
                     }
 
 		}
