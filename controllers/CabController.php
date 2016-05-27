@@ -1,6 +1,6 @@
 <?php
 
-include_once ( SITE_ROOT.'/models/News.php');
+include_once ( SITE_ROOT.'/models/User.php');
 /**
 *      класс контролен для личного кабинета
 */
@@ -14,7 +14,9 @@ class CabController
 	//     показать весь список новостей
 	public function actionIndex($value='')
 	{
-		    echo "CabController actionIndex ".PHP_EOL;
+                      //      если пользователь аут. то берем ид иначе переадресация на user/login
+		$user_id=   User::is_logged();
+		    echo "CabController actionIndex    $user_id".PHP_EOL;
 		# code...
 		/* $newsList=array();
 		 $newsList=News::getNewsList();*/

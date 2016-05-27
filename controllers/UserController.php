@@ -38,7 +38,7 @@ include_once ( SITE_ROOT.'/models/Product.php');*/
               echo "OKI";
         	User::auth($u_id);
 
-        	header('Location: /cabinet/');
+        	header('Location: /cab/');
         	# code...
         	/*if( User::register($name,$email,$pass)){
         		$errors[]=$translate['corect_register'];

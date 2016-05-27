@@ -15,6 +15,19 @@ class User
 
 	}
 
+
+public static function is_logged()
+{
+              session_start();
+              if (isset($_SESSION['user'])) {
+                     return $_SESSION['user'];
+                 
+              }else{
+                               header('Location: /user/login');
+                           }
+              
+    # code...
+}
 	/**
 	*   регистрация
 	*/
