@@ -7,6 +7,8 @@ return $arrayName = array(
                                 'user/register'=>'user/register/', 
                                  'user/edit'=>'user/edit/', 
                                  'contacts'=>'site/contacts/', 
+                                 'cart/([([0-9]+)'=>'cart/add/$1/', // 
+                                   'cart'=>'cart/index/', // 
                                   
                           'cab' => 'cab/index',   // метод аction_index в контролере 
                            'news' => 'news/index',   // метод аction_index в контролере NewsConttroler

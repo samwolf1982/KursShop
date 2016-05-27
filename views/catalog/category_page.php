@@ -128,7 +128,9 @@ include_once SITE_ROOT.'/views/common/header.php';
             	<a href="<?php echo '/product/'.$value->get_id(); ?>"><img  width="200" height="150" src= <?php echo "/template/images/product/".$value->get_image(); ?> alt="Image 01" /></a>
                 <h3><?php echo $value->get_name(); ?></h3>
                 <p class="product_price"><?php echo $value->get_price(); echo $translate['curency']; ?></p>
-                <a href="shoppingcart.html" class="add_to_card"><?php echo $translate['add_to_card']; ?></a>
+
+                <a href=<?php echo '/cart/'.$value->get_id(); ?>  class="add_to_card"><?php echo $translate['add_to_card']; ?></a>
+                
                 <a href="<?php echo '/product/'.$value->get_id(); ?>" class="detail"><?php echo $translate['detail']; ?></a>
             </div>  
  

@@ -22,19 +22,19 @@ include_once SITE_ROOT.'/views/common/header.php';
             <div class="content_half float_l">
       
                 <div id="contact_form">
-                   <form method="post" name="contact" action="/user/edit">
+                   <form method="post" name="contact" action="/contacts">
                         
                         
                         <div class="cleaner h10"></div>
-                        <label for="name"><?php echo $translate['email'].':'; ?></label> <input value="" type="text" id="name" name="name" class="validate-email required input_field" />
+                        <label for="email"><?php echo $translate['email'].':'; ?></label> <input value="lorem@lorem.com" type="text" id="email" name="email" class="validate-email required input_field" />
                         <div class="cleaner h10"></div>
                         
-            <label for="subject"><?php echo $translate['message'].':'; ?></label> <input value="111111" type="textarea"  name="pass" id="pass" class="input_field" />
+            <label for="mess"><?php echo $translate['message'].':'; ?></label> <input  type="textarea"  name="mess" id="mess" class="input_field" value=" Текст сообщения" />
 
             <div class="cleaner h10"></div>
         
                         
-                        <input type="submit" value="<?php echo $translate['apply'] ?>" id="submit" name="submit" class="submit_btn float_l" />
+                        <input type="submit" value="<?php echo $translate['send'] ?>" id="submit" name="submit" class="submit_btn float_l" />
             <input type="reset" value="<?php echo $translate['reset'] ?>" id="reset" name="reset" class="submit_btn float_r" />
                         
               </form>
@@ -56,7 +56,7 @@ include_once SITE_ROOT.'/views/common/header.php';
        <?php endif ?>
 
        <?php if ($result): ?>
-                <p><?php echo $translate['update_data_user']; ?></p>
+                <p><?php echo $translate['send_mess']; ?></p>
        <?php endif ?>
 
 

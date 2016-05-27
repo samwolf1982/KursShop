@@ -52,6 +52,7 @@ ddsmoothmenu.init({
 
   $translate =include (SITE_ROOT.'/components/language.php');
    include_once (SITE_ROOT.'/models/User.php');
+    include_once (SITE_ROOT.'/models/Cart.php');
 
 
 ?>
@@ -70,7 +71,7 @@ ddsmoothmenu.init({
         <div id="header_right">
 	        <a href="#">My Account</a> 
           | <a href="#">My Wishlist</a> 
-          | <a href="#"><?php echo $translate['cart'];  ?></a> 
+          | <a href="#"><?php echo $translate['cart'];  echo " (".Cart::get_count().")"; ?></a> 
 
             <?php if (User::is_Guest()): ?>
                    | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>
