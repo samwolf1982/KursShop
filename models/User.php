@@ -30,6 +30,41 @@ class User
         return true;
 
 	}
+
+        /**
+     * Проверяет cуществования пользователя
+     * @param string $name <p>Имя</p>
+     * @return int <p>id поьзователя</p>
+     */
+    public static function check_User_Data($name)
+    {
+        return 999;
+        if (strlen($name) >= 2) {
+            return true;
+        }
+        return false;
+    }
+           /**
+     *  аунтефикация пользователя
+     * @param string $name <p>Имя</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function auth($id)
+    {
+
+        session_start();
+        $_SESSION['user']=$id;
+               //to do
+/*        return false;
+        if (strlen($name) >= 2) {
+            return true;
+        }
+        return false;*/
+
+        return true;
+    }
+
+
 	    /**
      * Проверяет имя: не меньше, чем 2 символа
      * @param string $name <p>Имя</p>

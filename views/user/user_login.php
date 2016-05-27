@@ -15,27 +15,27 @@ include_once SITE_ROOT.'/views/common/header.php';
    <div id="templatemo_main">
  
         <div id="content" class="float_r">
-        	
-            <h1><?php echo $translate['registration']; ?></h1>
+          
+            <h1><?php echo $translate['enter_site']; ?></h1>
             <div class="content_half float_l">
-			
+      
                 <div id="contact_form">
                    <form method="post" name="contact" action="#">
                         
-                        <label for="author"><?php echo $translate['name'].':'; ?></label> <input value="Ivan" type="text" id="name" name="name" class="required input_field" />
+                        
                         <div class="cleaner h10"></div>
                         <label for="email"><?php echo $translate['email'].':'; ?></label> <input value="koko@ko.ko" type="text" id="email" name="email" class="validate-email required input_field" />
                         <div class="cleaner h10"></div>
                         
-						<label for="subject"><?php echo $translate['pass'].':'; ?></label> <input value="1111" type="text" name="pass" id="pass" class="input_field" />
+            <label for="subject"><?php echo $translate['pass'].':'; ?></label> <input value="111111" type="text" name="pass" id="pass" class="input_field" />
 
-						<div class="cleaner h10"></div>
+            <div class="cleaner h10"></div>
         
                         
                         <input type="submit" value="<?php echo $translate['submit'] ?>" id="submit" name="submit" class="submit_btn float_l" />
-						<input type="reset" value="<?php echo $translate['reset'] ?>" id="reset" name="reset" class="submit_btn float_r" />
+            <input type="reset" value="<?php echo $translate['reset'] ?>" id="reset" name="reset" class="submit_btn float_r" />
                         
-            	</form>
+              </form>
                 </div>
 
 
@@ -43,13 +43,13 @@ include_once SITE_ROOT.'/views/common/header.php';
                  <div class="content_half float_r">
        
        <?php if (isset($errors) && is_array($errors)): ?>
-       	         <ul>
-       	         	<?php foreach ($errors as $key => $value): ?>
-       	         		    <li><?php echo $value; ?></li>
-       	         	<?php endforeach ?>
+                 <ul>
+                  <?php foreach ($errors as $key => $value): ?>
+                        <li><?php echo $value; ?></li>
+                  <?php endforeach ?>
 
 
-       	         </ul>
+                 </ul>
 
        <?php endif ?>
 

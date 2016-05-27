@@ -67,7 +67,7 @@ ddsmoothmenu.init({
         </div>
         
         <div id="header_right">
-	        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#"><?php echo $translate['cart'];  ?></a> | <a href="#">Checkout</a> | <a href="/user/register"><?php echo $translate['registration'];  ?></a>            
+	        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#"><?php echo $translate['cart'];  ?></a> | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>| <a href="/cab"><?php echo $translate['cab'];  ?> | <a href="/user/register"><?php echo $translate['registration'];  ?></a>            
 		</div>
         
         <div class="cleaner"></div>
