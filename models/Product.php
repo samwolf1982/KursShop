@@ -48,6 +48,28 @@ class Product
             return $arr;
 
 	}
+
+        // возврат списка продуктов одной категории
+	public static function get_category_products($id)
+	{
+		# code...
+
+		# code...
+		  $localStore=new Store(); // локальное хранилище
+
+		$arr=array();
+		                  // будет указывться в запросе  where
+		// cейчас  просто в цикле проверка на принадлежнос к как.
+		foreach ($localStore->get_all_products() as $key => $value) {
+			# code...
+                    if( $value->get_cat_id()==$id){
+                    	 $arr[]=$value;
+                    }
+
+		}
+        
+            return $arr;
+	}
 }
 
 ?>

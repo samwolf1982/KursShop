@@ -60,7 +60,7 @@ Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui deniq
        'Lorem ipsum dolor sit amet, no has porro dicam. Ridens fuisset est ex. Tempor libris vix eu, alii everti scaevola eos ut. Quo ei augue labitur tibique. Mei ceteros sapientem eu.
 
 Pri at libris electram comprehensam. Ad harum aliquip probatus sed, eu qui denique pertinacia, vel stet dolore scripserit cu. Cibo epicuri ei vis, ei omnes imperdiet pertinacia sed. Ne quo populo splendide. Pri ut apeirian indoctum disputationi, at per causae adipiscing, et movet tantas ius. Eu ubique doming vulputate qui.'
-,'admin or user','01.jpg','name_'.$i,$i*5,$i*5+3,1,'brand_'.$i,1,1,1,($i+1)*7);
+,'admin or user','01.jpg','name_'.$i,rand(0,$this->count_categoryContent),$i*5+3,1,'brand_'.$i,1,1,1,($i+1)*7);
              
              $this->productContent[]=$obj;  
 		}
@@ -98,6 +98,16 @@ $this->categoryContent=array();
 		# code...
 
 		if(isset($this->categoryContent[$id])) return $this->categoryContent[$id];
+		else return null;
+	}
+
+
+ //     все продукты
+	public function get_all_products()
+	{
+		# code...
+
+		if(isset($this->productContent)) return $this->productContent;
 		else return null;
 	}
 

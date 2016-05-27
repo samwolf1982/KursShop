@@ -1,6 +1,7 @@
 <?php
 
 return array('categoryes' =>'Категории',
+	         'category' =>'Категория',
 	         'new_products' =>'Новые товары',
 	         'curency'=>'руб.',
 	         'add_to_card'=>'добавить в корзину',

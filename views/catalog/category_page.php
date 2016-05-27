@@ -1,10 +1,10 @@
 <?php
                       //   from models
-  //  $categotyList        
-  //  $producList
+  //  $categotyList      array      
+  //  $producList     array
+//  $categoty_name      single  
                      //   from language.php
   //  $translate        
-
 
 include_once SITE_ROOT.'/views/common/header.php';
   $translate =include (SITE_ROOT.'/components/language.php');
@@ -64,7 +64,7 @@ include_once SITE_ROOT.'/views/common/header.php';
 				</div><!-- /item -->
 				
 				<div class="/template/item item_3">
-					<img src="/template/images/slider/01.jpg" alt="Slider 03" />
+					<img  src="/template/images/slider/01.jpg" alt="Slider 03" />
 				</div><!-- /item -->
 				
 			</div><!-- /backgrounds -->
@@ -73,12 +73,14 @@ include_once SITE_ROOT.'/views/common/header.php';
     <div id="templatemo_main">
    		<div id="sidebar" class="float_l">
         	<div class="sidebar_box"><span class="bottom"></span>
+
             	<h3> <?php echo $translate['categoryes']; ?>  </h3>   
+            
                 <div class="content"> 
                 	<ul class="sidebar_list">
-                	<!-- цикл для вывода названия категорий -->
+                    <!-- цикл для вывода названия категорий -->
 <?php foreach ($categotyList as $key => $value): ?>
-	<li class="first"><a href=<?php echo '/category/'.$value->get_id(); ?>> <?php echo $value->get_name(); ?> </a></li>
+    <li class="first"   <?php echo  $value->get_id()==$id? 'style="  background-color: #00BFF8;"':'' ?>   ><a  href=<?php echo '/category/'.$value->get_id(); ?>> <?php echo $value->get_name(); ?> </a></li>
 <?php endforeach ?>
                 	
         
@@ -117,7 +119,7 @@ include_once SITE_ROOT.'/views/common/header.php';
         </div>
         <div id="content" class="float_r">
                 <!-- цикл для списка новых товаров -->
-        	<h1> <?php echo $translate['new_products'];  ?> </h1>
+        	<h1> <?php echo $translate['category'];  echo " ".$categotyList[0]->get_name(); ?> </h1>
 <?php
        $counter=0;
  foreach ($producList as $key => $value): ?>
@@ -137,39 +139,17 @@ include_once SITE_ROOT.'/views/common/header.php';
 <?php endforeach ?>
 
     
-
-        <div class="cleaner h50"></div>
-            
-            <h4><?php echo $translate['recomended'];  ?> </h4>
-        	<div class="product_box">
-            	<a href="productdetail.html"><img src="images/product/01.jpg" alt="Image 01" /></a>
-                <h3>Ut eu feugiat</h3>
-                <p class="product_price">$ 100</p>
-                <a href="shoppingcart.html" class="add_to_card">Add to Cart</a>
-                <a href="productdetail.html" class="detail">Detail</a>
-            </div>        	
-            <div class="product_box">
-            	<a href="productdetail.html"><img src="images/product/02.jpg" alt="Image 02" /></a>
-                <h3>Curabitur et turpis</h3>
-                <p class="product_price">$ 200</p>
-                <a href="shoppingcart.html" class="add_to_card">Add to Cart</a>
-                <a href="productdetail.html" class="detail">Detail</a>
-            </div>        	
-            <div class="product_box no_margin_right">
-            	<a href="productdetail.html"><img src="images/product/03.jpg" alt="Image 03" /></a>
-                <h3>Mauris consectetur</h3>
-                <p class="product_price">$ 120</p>
-                <a href="shoppingcart.html" class="add_to_card">Add to Cart</a>
-                <a href="productdetail.html" class="detail">Detail</a>
-            </div>    
-    
         </div> 
         <div class="cleaner"></div>
     </div> <!-- END of templatemo_main -->
-
-
+    
  
 
+    
+
+
+
+<?php echo 'main page'; ?>
 
 
 <?php
