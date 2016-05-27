@@ -1,4 +1,3 @@
-
 <?php
 // FRONT CONTROLLER
 // 1 общие настройки

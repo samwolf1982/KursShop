@@ -35,7 +35,7 @@ include_once ( SITE_ROOT.'/models/Product.php');*/
 //      если нету ошибок то обработка формы дальше
         if ($errors==false) {
               
-              echo "OKI";
+            //  echo "OKI";
         	User::auth($u_id);
 
         	header('Location: /cab/');
@@ -67,10 +67,79 @@ include_once ( SITE_ROOT.'/models/Product.php');*/
  	# code...
  }
 
+ public function actionEdit($value='')
+ {
+         
+ $translate =include (SITE_ROOT.'/components/language.php');
+
+$u_id=User::is_logged();
+$user=User::get_User_By_Id(); 
+
+$name=$user['name'];
+$pass=$user['pass'];
+
+$result=false;
+
+
+   $errors = array();
+
+
+		if (isset($_POST['submit']) &&isset($_POST['name']) &&isset($_POST['pass'])) {
+			# code...
+		
+				   
+					$name=$_POST['name'];
+					$pass=$_POST['pass'];
+					$errors=false;	
+			
+       
+   if(!$u_id=User::check_User_Data($name))   {  $errors[]=$translate['present_user'];} ;
+      if(!User::checkName($name))   {  $errors[]=$translate['incorect_name'];} ;
+      if(!User::checkPassword($pass)){  $errors[]=$translate['incorect_pass'] ;};
+    	# code...
+    
+//      если нету ошибок то обработка формы дальше
+        if ($errors==false) {
+              
+
+         //       редактируем даные в бд
+        $result=User::edit($u_id,$name,$pass);
+
+
+        	//header('Location: /cab/');
+        	# code...
+        	/*if( User::register($name,$email,$pass)){
+        		$errors[]=$translate['corect_register'];
+        	}   else{
+        		$errors[]=$translate['incorect_register'];
+        	}*/
+        }
+
+		}
+		
+
+
+		      include_once ( SITE_ROOT.'/views/user/cab_edit.php');
+		# code...
+	/*	 $categotyList=array();
+		 $categotyList=Category::get_Categort_List();
+		 $producList=array();
+		                         //     количество продуктов
+		 $producList=Product::get_news_products(9);
+          include_once ( SITE_ROOT.'/views/user/page_u_register.php');
+*/
+		return true;
+
+     
+
+ 	# code...
+ }
+
+
  public function actionLogout($value='')
   {
           
-        session_start();
+      
         unset($_SESSION['user']);
         header('Location: /');
 		die();

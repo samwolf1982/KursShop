@@ -120,7 +120,7 @@ ddsmoothmenu.init({
                 </li>
                 <li><a href="/news">Новости</a></li>
                 <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/contacts"><?php echo $translate['contacts'];  ?></a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of ddsmoothmenu -->

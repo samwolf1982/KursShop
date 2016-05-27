@@ -29,6 +29,25 @@ include_once ( SITE_ROOT.'/models/Product.php');
 		//echo "List news"; 
 		return true;
 	}
+
+		public function actionContacts($value='')
+	{
+		//echo "SiteController actionContacts";
+		  include_once ( SITE_ROOT.'/views/site/contact_form.php');
+		# code...
+/*		 $categotyList=array();
+		 $categotyList=Category::get_Categort_List();
+		 $producList=array();
+		                         //     количество продуктов
+		 $producList=Product::get_news_products(9);
+          include_once ( SITE_ROOT.'/views/site/main_page.php');*/
+
+     // echo "List News ".PHP_EOL;
+      //print_r($newsList);
+		// var_dump($newsList);
+		//echo "List news"; 
+		return true;
+	}
  }
 
 

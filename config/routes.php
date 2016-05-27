@@ -5,6 +5,8 @@ return $arrayName = array(
                               'user/login'=>'user/login/', 
                                'user/logout'=>'user/logout/', 
                                 'user/register'=>'user/register/', 
+                                 'user/edit'=>'user/edit/', 
+                                 'contacts'=>'site/contacts/', 
                                   
                           'cab' => 'cab/index',   // метод аction_index в контролере 
                            'news' => 'news/index',   // метод аction_index в контролере NewsConttroler

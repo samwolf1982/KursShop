@@ -15,6 +15,15 @@ class User
 
 	}
 
+
+public  static function edit($u_id,$name,$pass)
+{
+    # code...
+    // to db  UPDATE
+
+    return true;
+}
+
 public static function is_Guest()
 {
     
@@ -31,6 +40,16 @@ public static function is_Guest()
                                header('Location: /user/login');
                            }
               */
+    # code...
+}
+
+
+public static function get_User_By_Id()
+{
+    
+
+     // to bd
+     return  array('name' => 'Ivan','pass'=>'1111' );
     # code...
 }
 

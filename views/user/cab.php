@@ -24,7 +24,9 @@ include_once SITE_ROOT.'/views/common/header.php';
 
             
             <div class="content_half float_l">
-			  <p><a href="#"><?php echo $translate['edit_data']; ?></a></p>
+
+            <p><?php echo $translate['name'].':  '.User::get_User_By_Id()['name']; ?> </p>
+			  <p><a href="/user/edit"><?php echo $translate['edit_data']; ?></a></p>
  
 
 
