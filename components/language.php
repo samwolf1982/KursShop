@@ -37,6 +37,7 @@ return array('categoryes' =>'Категории',
 	            'user_login'=>'Вход',
 	            'enter_site'=>'Вход на сайт',
 	            'present_user'=>'Пользователь существует',
+	            'exit'=>'Выход',
 
 	           );
 

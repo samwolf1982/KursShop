@@ -3,6 +3,7 @@ return $arrayName = array(
                            'news/([a-z]+)/([0-9]+)'=>'news/view/$1/$2', // второй уровень использовано регулярное выражение для  определения ид записи
                             'news/([([0-9]+)'=>'news/view/$1/', // 
                               'user/login'=>'user/login/', 
+                               'user/logout'=>'user/logout/', 
                                 'user/register'=>'user/register/', 
                                   
                           'cab' => 'cab/index',   // метод аction_index в контролере 

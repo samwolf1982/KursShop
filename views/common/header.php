@@ -65,9 +65,15 @@ ddsmoothmenu.init({
     	<div id="site_title">
         	<h1><a href="#">MotoOne</a></h1>
         </div>
-        
+        <!-- Правая часть  -->
         <div id="header_right">
-	        <a href="#">My Account</a> | <a href="#">My Wishlist</a> | <a href="#"><?php echo $translate['cart'];  ?></a> | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>| <a href="/cab"><?php echo $translate['cab'];  ?> | <a href="/user/register"><?php echo $translate['registration'];  ?></a>            
+	        <a href="#">My Account</a> 
+          | <a href="#">My Wishlist</a> 
+          | <a href="#"><?php echo $translate['cart'];  ?></a> 
+          | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>
+          | <a href="/user/logout"><?php echo $translate['exit'];  ?></a>
+          | <a href="/cab"><?php echo $translate['cab'];  ?> 
+          | <a href="/user/register"><?php echo $translate['registration'];  ?></a>            
 		</div>
         
         <div class="cleaner"></div>

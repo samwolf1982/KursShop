@@ -67,6 +67,19 @@ include_once ( SITE_ROOT.'/models/Product.php');*/
  	# code...
  }
 
+ public function actionLogout($value='')
+  {
+          
+        session_start();
+        unset($_SESSION['user']);
+        header('Location: /');
+		die();
+
+     
+
+ 	# code...
+ }
+
  	//     показать весь список новостей
 	public function actionRegister($value='')
 	{
