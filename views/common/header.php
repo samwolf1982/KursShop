@@ -51,6 +51,7 @@ ddsmoothmenu.init({
 
 
   $translate =include (SITE_ROOT.'/components/language.php');
+   include_once (SITE_ROOT.'/models/User.php');
 
 
 ?>
@@ -70,10 +71,28 @@ ddsmoothmenu.init({
 	        <a href="#">My Account</a> 
           | <a href="#">My Wishlist</a> 
           | <a href="#"><?php echo $translate['cart'];  ?></a> 
-          | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>
-          | <a href="/user/logout"><?php echo $translate['exit'];  ?></a>
-          | <a href="/cab"><?php echo $translate['cab'];  ?> 
-          | <a href="/user/register"><?php echo $translate['registration'];  ?></a>            
+
+            <?php if (User::is_Guest()): ?>
+                   | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>
+          <?php endif ?>
+          
+
+     
+         <?php if (!User::is_Guest()): ?>
+                | <a href="/cab"><?php echo $translate['cab'];  ?> 
+          <?php endif ?>
+
+        
+
+ <?php if (User::is_Guest()): ?>
+                       | <a href="/user/register"><?php echo $translate['registration'];  ?></a>
+          <?php endif ?>
+
+          
+          <?php if (!User::is_Guest()): ?>
+                   |  <a href="/user/logout"><?php echo $translate['exit'];  ?></a>
+          <?php endif ?>
+            
 		</div>
         
         <div class="cleaner"></div>

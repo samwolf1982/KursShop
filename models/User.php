@@ -15,10 +15,28 @@ class User
 
 	}
 
+public static function is_Guest()
+{
+    
+              if (isset($_SESSION['user'])) {
+                     return false;
+                 
+              }else
+              {return true;}
+          /*    
+              if (isset($_SESSION['user'])) {
+                     return $_SESSION['user'];
+                 
+              }else{
+                               header('Location: /user/login');
+                           }
+              */
+    # code...
+}
 
 public static function is_logged()
 {
-              session_start();
+              
               if (isset($_SESSION['user'])) {
                      return $_SESSION['user'];
                  
@@ -65,7 +83,7 @@ public static function is_logged()
     public static function auth($id)
     {
 
-        session_start();
+        
         $_SESSION['user']=$id;
                //to do
 /*        return false;

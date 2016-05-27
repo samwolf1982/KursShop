@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 
 // 2 подключение нужных файлов  
 define('SITE_ROOT', dirname(__FILE__));
-
+session_start();
 require_once ( SITE_ROOT.'/components/Router.php');
 
 // 3 подключение к бд
