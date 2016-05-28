@@ -55,17 +55,23 @@ class Cart
      /**
 	*    возвращает список  категорий
 	*/
-		public static  function get_Categort_List()
+		public static  function get_Products()
 	{
 		# code...
-		  $localStore=new Store(); // локальное хранилище
+		  $localStore=new Store(); // локальное хранилище имитация
 
 		$arr=array();
-            for ($i=0; $i < 10; $i++) { 
-            	# code...
-               $arr[]= $localStore->get_category_id($i);
-              // var_dump($localStore->get_news_id($i));
-            }
+     if (isset($_SESSION['products'])) {
+     	# code...
+     	foreach ($_SESSION['products'] as $key => $value) {
+     		# code...
+     		    $arr[]= $localStore->get_product_id($key);  
+     	}
+           
+
+     }
+             print_r($arr);
+             die();
             return $arr;
 
 	}
