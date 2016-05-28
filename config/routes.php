@@ -11,6 +11,7 @@ return $arrayName = array(
                                    'cart'=>'cart/index/', // 
                                    'admin/products'=>'admin/products/', 
                                    'admin'=>'admin/index/', // 
+                                    'admin/product/delete/([a-z]+)/([0-9]+)'=>'admin/product/delete/$1', 
                               
                                    'admin/gategories'=>'admin/gategories/', 
                                    'admin/orders'=>'admin/orders/', 
