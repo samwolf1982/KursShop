@@ -22,22 +22,31 @@ include_once SITE_ROOT.'/views/common/header.php';
       
                 <div id="edit_products_admin_panel">
                   
-                        
-                         <?php foreach ($variable as $key => $value): ?>
-                           
-                         <?php endforeach ?>
+                       
+     <table>
+           <?php foreach ($products as $key => $value): ?>
+        <tr>
+            <td> <label ><?php echo $value->get_name() ?></label> </td>
+            <td> <label>  <? echo   $value->get_cat_id()?></label></td>
+            <td> <label >  <? echo   $value->get_price()?></label> </td>
+            <td>     <a href= <?php echo "/admin/product/edit/".$value->get_id(); ?> > <button><?php echo $translate['edit']; ?></button>
+        </a>
+</td>
+            <td>  <a href=<?php echo "/admin/product/delete/".$value->get_id(); ?>>         <button><?php echo $translate['delete']; ?></button></a></td>
+        </tr>
+     <?php endforeach ?> 
 
-                        <div class="cleaner h10"></div>
-                        <label ><?php echo $translate['all_products']; ?></label> 
-                        <div class="cleaner h10"></div>
+    </table>
 
-                          <label><?php echo $translate['all_catergores']; ?></label> 
-                        <div class="cleaner h10"></div>
 
-                          <label ><?php echo $translate['all_orders']; ?></label> 
+
+                      <!--    <?php foreach ($products as $key => $value): ?>
+                          <div class="cleaner h10"></div>
+                          <label ><?php echo $value->get_name() ?></label> 
+                          <label>  <? echo   $value->get_cat_id()?></label>
+                          <label >  <? echo   $value->get_price()?></label>         
                         <div class="cleaner h10"></div>
-          
-            <div class="cleaner h10"></div>
+                         <?php endforeach ?> -->
         
     
                         
@@ -48,15 +57,19 @@ include_once SITE_ROOT.'/views/common/header.php';
             </div>
                  <div class="content_half float_r">
 
+ <!--       <?php foreach ($products as $key => $value): ?>
+           <a href= <?php echo "/admin/product/edit/".$value->get_id(); ?> > <button><?php echo $translate['edit']; ?></button>
+        </a>
+        <a href=<?php echo "/admin/product/delete/".$value->get_id(); ?>>         <button><?php echo $translate['delete']; ?></button></a>
+       <div class="cleaner h10"></div>
        
-      <a href="/admin/products"> <button><?php echo $translate['edit']; ?></button>
-       </a> <div class="cleaner h10"></div>
+       <?php endforeach ?> -->
+     
+      
 
-      <a href="/admin/gategories">         <button><?php echo $translate['edit']; ?></button></a>
-        <div class="cleaner h10"></div>
 
-       <a href="/admin/orders">        <button><?php echo $translate['edit']; ?></button>
-</a>        <div class="cleaner h10"></div>
+
+
 
        <?php if (isset($errors) && is_array($errors)): ?>
                  <ul>

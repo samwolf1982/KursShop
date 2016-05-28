@@ -44,11 +44,13 @@ define('MAX_PRODUCTS', 9);
 		return true;
 	}
 		//     показать вcе товары из определеной категории
-	public function actionCategory($id='',$page=1)
+	public function actionProducts()
 	{
 
 
       
+
+
 		/*echo "SiteController actionIndex".PHP_EOL;
 				echo "cat: ".$id.PHP_EOL;
 						echo "page".$page.PHP_EOL;

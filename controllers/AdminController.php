@@ -23,7 +23,11 @@ define('MAX_PRODUCTS', 9);
 	{
 
 	if(self::is_admin()){
+   // select * products
 
+		          
+		          $v=new Store();
+                  $products=$v->get_all_products();
                   include_once ( SITE_ROOT.'/views/admin/edit_products.php');
               
 		}
