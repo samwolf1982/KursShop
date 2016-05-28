@@ -31,8 +31,9 @@ Cart::add_Product($value);
 	
 
  // todo 
-        Cart::get_Products();
+        $cardList = Cart::get_Products();
 	// show
+	
 	 include_once ( SITE_ROOT.'/views/cart/main_page_cart.php');	
     /*       Cart::add_Product($value);
       
