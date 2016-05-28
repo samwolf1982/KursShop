@@ -55,6 +55,8 @@ return array('categoryes' =>'Категории',
 	             'edit_products'=>'Редактор товаров',
 	             'edit_gategories'=>'Редактор категорий',
 	             'edit_orders'=>'Редактор заказов',
+				 'cart_submit'=>'Оформить заказ',
+				 'cart_submit_all'=>'Оформить все заказы'
 
 
 
