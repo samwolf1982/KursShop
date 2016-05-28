@@ -55,7 +55,12 @@ return array('categoryes' =>'Категории',
 	             'edit_products'=>'Редактор товаров',
 	             'edit_gategories'=>'Редактор категорий',
 	             'edit_orders'=>'Редактор заказов',
+<<<<<<< HEAD
 	             'delete'=>'Удалить',
+=======
+				 'cart_submit'=>'Оформить заказ',
+				 'cart_submit_all'=>'Оформить все заказы'
+>>>>>>> 4347cbc27568a3527c12249e9ef77bc5d8c1807b
 
 
 
