@@ -73,7 +73,7 @@ class Router
                 include_once  ($contollerFileName);	
          }
              // после подключения создать объэкт класса контроллера, и вызвать нужный метод
-                  
+                  //echo $controler_Name.PHP_EOL;
      $controler_Object=new $controler_Name;
         //$result=$controler_Object->$action_Name();    // ниже замена для красивого вызова в екшене  nm2-15-00
  $result=call_user_func_array(array($controler_Object,$action_Name), $parametrs);

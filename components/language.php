@@ -10,6 +10,8 @@ return array('categoryes' =>'Категории',
 	          'catalog'=>'Каталог товаров',
 	          'home'=>'Главная',
 	          'all_products'=>'Все товары',
+	          'all_catergores'=>'Все категории',
+	          'all_orders'=>'Все заказы',
 	          'recomended'=>'Рекомендуемые',
 	          'price'=>'Цена',
 	          'availability'=>'Наличие',
@@ -50,6 +52,10 @@ return array('categoryes' =>'Категории',
 	            'send'=>'отправить',
 	            'send_mess'=>'Письмо отправилено',
 	             'admin_panel'=>'Админ панель',
+	             'edit_products'=>'Редактор товаров',
+	             'edit_gategories'=>'Редактор категорий',
+	             'edit_orders'=>'Редактор заказов',
+
 
 
 	           );

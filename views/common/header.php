@@ -53,6 +53,7 @@ ddsmoothmenu.init({
   $translate =include (SITE_ROOT.'/components/language.php');
    include_once (SITE_ROOT.'/models/User.php');
     include_once (SITE_ROOT.'/models/Cart.php');
+      include_once (SITE_ROOT.'/controllers/AdminBase.php');
 
 
 ?>
@@ -69,7 +70,12 @@ ddsmoothmenu.init({
         </div>
         <!-- Правая часть  -->
         <div id="header_right">
-	        <a href="/admin"><?php echo $translate['admin_panel']; ?></a> 
+
+       <?php if (AdminBase::is_admin()): ?>
+                    <a href="/admin"><?php echo $translate['admin_panel']; ?></a> 
+          <?php endif ?>
+
+	      
           | <a href="#">My Wishlist</a> 
           | <a href="/cart"><?php echo $translate['cart'];  echo " (".Cart::get_count().")"; ?></a> 
 
