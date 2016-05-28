@@ -49,6 +49,7 @@ return array('categoryes' =>'Категории',
 	            'message'=>'Сообщение',
 	            'send'=>'отправить',
 	            'send_mess'=>'Письмо отправилено',
+	             'admin_panel'=>'Админ панель',
 
 
 	           );

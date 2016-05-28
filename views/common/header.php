@@ -69,7 +69,7 @@ ddsmoothmenu.init({
         </div>
         <!-- Правая часть  -->
         <div id="header_right">
-	        <a href="#">My Account</a> 
+	        <a href="/admin"><?php echo $translate['admin_panel']; ?></a> 
           | <a href="#">My Wishlist</a> 
           | <a href="/cart"><?php echo $translate['cart'];  echo " (".Cart::get_count().")"; ?></a> 
 
