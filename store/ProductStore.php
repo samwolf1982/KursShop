@@ -145,6 +145,11 @@ class ProductStore
 		# code...
 		return $this->image;
 	}
+	public function get_quantity()
+	{
+		# code...
+		return 1;
+	}
 }
 
 

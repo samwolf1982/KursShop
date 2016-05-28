@@ -76,7 +76,7 @@ ddsmoothmenu.init({
           <?php endif ?>
 
 	      
-          | <a href="#">My Wishlist</a> 
+        
           | <a href="/cart"><?php echo $translate['cart'];  echo " (".Cart::get_count().")"; ?></a> 
 
             <?php if (User::is_Guest()): ?>

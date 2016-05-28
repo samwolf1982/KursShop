@@ -58,7 +58,7 @@ define('MAX_PRODUCTS', 9);
 
 
 		          $v=new Store();
-                  $product=$v->get_all_products();
+                  $product=$v->get_product_id($id);
                   include_once ( SITE_ROOT.'/views/admin/edit_product.php');
               
 		}
