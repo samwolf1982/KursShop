@@ -70,8 +70,7 @@ class Cart
            
 
      }
-             print_r($arr);
-             die();
+             
             return $arr;
 
 	}
