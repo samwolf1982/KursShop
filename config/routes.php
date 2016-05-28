@@ -9,6 +9,7 @@ return $arrayName = array(
                                  'contacts'=>'site/contacts/', 
                                  'cart/([([0-9]+)'=>'cart/add/$1/', // 
                                    'cart'=>'cart/index/', // 
+                                   'admin'=>'admin/index/', // 
                                   
                           'cab' => 'cab/index',   // метод аction_index в контролере 
                            'news' => 'news/index',   // метод аction_index в контролере NewsConttroler
