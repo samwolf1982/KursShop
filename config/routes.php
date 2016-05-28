@@ -9,10 +9,12 @@ return $arrayName = array(
                                  'contacts'=>'site/contacts/', 
                                  'cart/([([0-9]+)'=>'cart/add/$1/', // 
                                    'cart'=>'cart/index/', // 
-                                   'admin/products'=>'admin/products/', 
-                                   'admin'=>'admin/index/', // 
-                                    'admin/product/delete/([a-z]+)/([0-9]+)'=>'admin/product/delete/$1', 
-                              
+                                   
+                                 
+                                    'admin/product/delete/([0-9]+)'=>'admin/product_delete/$1', 
+                                      'admin/product/edit/([0-9]+)'=>'admin/product_edit/$1', 
+                                    'admin/products'=>'admin/products/', 
+                                'admin'=>'admin/index/', // 
                                    'admin/gategories'=>'admin/gategories/', 
                                    'admin/orders'=>'admin/orders/', 
 

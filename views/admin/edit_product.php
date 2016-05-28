@@ -17,7 +17,7 @@ include_once SITE_ROOT.'/views/common/header.php';
  
         <div id="content" class="float_r">
           
-            <h1><?php echo $translate['edit_products']; ?></h1>
+            <h1><?php echo $translate['edit_product']; ?></h1>
             <div class="content_half float_l">
       
                 <div id="edit_products_admin_panel">

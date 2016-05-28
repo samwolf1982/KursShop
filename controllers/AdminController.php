@@ -43,6 +43,67 @@ define('MAX_PRODUCTS', 9);
 	}
 
 
+	 		public function actionProduct_edit($id)
+	{
+
+	if(self::is_admin()){
+   // select * products
+
+		         //  echo "del ".$id;
+		       //    die();
+   // to bd delete prod
+
+		/* $ref=$_SERVER['HTTP_REFERER'];
+		 header('Location: '.$ref );*/
+
+
+		          $v=new Store();
+                  $product=$v->get_all_products();
+                  include_once ( SITE_ROOT.'/views/admin/edit_product.php');
+              
+		}
+		else{
+      header('Location: /');
+
+		}
+	              
+
+		return true;
+
+
+	}
+     
+
+   //      удалить продукт из базы
+ 		public function actionProduct_delete($id)
+	{
+
+	if(self::is_admin()){
+   // select * products
+
+		         //  echo "del ".$id;
+		       //    die();
+   // to bd delete prod
+
+		 $ref=$_SERVER['HTTP_REFERER'];
+		 header('Location: '.$ref );
+
+
+		          $v=new Store();
+                  $products=$v->get_all_products();
+                  include_once ( SITE_ROOT.'/views/admin/edit_products.php');
+              
+		}
+		else{
+      header('Location: /');
+
+		}
+	              
+
+		return true;
+
+
+	}
  	//     action index
 	public function actionIndex($value='')
 	{

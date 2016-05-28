@@ -59,7 +59,8 @@ return array('categoryes' =>'Категории',
 	             'delete'=>'Удалить',
 
 				 'cart_submit'=>'Оформить заказ',
-				 'cart_submit_all'=>'Оформить все заказы'
+				 'cart_submit_all'=>'Оформить все заказы',
+				 'edit_product'=>'Редактор товара',
 
 
 
