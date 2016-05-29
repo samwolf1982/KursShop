@@ -10,11 +10,10 @@ include_once SITE_ROOT . '/models/User.php';
 class UserController
 {
 
-    public function __construct($argument = '')
-    {
-        # code...
-    }
-
+    /**
+     *     метод для аутентификации польшователя в текущей сесии
+     * @param $value
+     */
     public function actionLogin($value = '')
     {
 
@@ -45,36 +44,35 @@ class UserController
             }
 
         }
-
+        // вывод отображения
         include_once SITE_ROOT . '/views/user/user_login.php';
-        # code...
-        /*     $categotyList=array();
-        $categotyList=Category::get_Categort_List();
-        $producList=array();
-        //     количество продуктов
-        $producList=Product::get_news_products(9);
-        include_once ( SITE_ROOT.'/views/user/page_u_register.php');
-         */
+
         return true;
 
         # code...
     }
 
+    /**
+     *
+     * @param $value
+     */
     public function actionEdit($value = '')
     {
 
         $translate = include SITE_ROOT . '/components/language.php';
 
         $u_id = User::islogged();
-        $user = User::getUser_By_Id();
+        $user = User::getUserById($u_id);
 
         $name = $user['name'];
-        $pass = $user['pass'];
+        $pass = $user['password'];
 
         $result = false;
 
         $errors = array();
 
+        // если даные пришли от формы- нажатие кнокпи
+        // проверка на валидность и новая запись в базе данных
         if (isset($_POST['submit']) && isset($_POST['name']) && isset($_POST['pass'])) {
             # code...
 
@@ -82,17 +80,19 @@ class UserController
             $pass = $_POST['pass'];
             $errors = false;
 
-            if (!$u_id = User::checkUserData($name)) {$errors[] = $translate['present_user'];};
+            /*if (!$u_id = User::checkUserData($name)) {$errors[] = $translate['present_user'];};*/
+            // валидация имени и пароля
             if (!User::checkName($name)) {$errors[] = $translate['incorect_name'];};
             if (!User::checkPassword($pass)) {$errors[] = $translate['incorect_pass'];};
             # code...
 
 //      если нету ошибок то обработка формы дальше
             if ($errors == false) {
-
                 //       редактируем даные в бд
                 $result = User::edit($u_id, $name, $pass);
-
+                // обновление параметров для отображения в форме
+                /*     $name = $_POST['name'];
+                $pass = $_POST['pass']*/;
                 //header('Location: /cab/');
                 # code...
                 /*if( User::register($name,$email,$pass)){
@@ -118,6 +118,9 @@ class UserController
         # code...
     }
 
+    /**
+     * @param $value
+     */
     public function actionLogout($value = '')
     {
 
@@ -129,6 +132,9 @@ class UserController
     }
 
     //    регистрация нового пользователя
+    /**
+     * @param $value
+     */
     public function actionRegister($value = '')
     {
 
@@ -160,14 +166,7 @@ class UserController
         }
 
         include_once SITE_ROOT . '/views/user/page_u_register.php';
-        # code...
-        /*     $categotyList=array();
-        $categotyList=Category::get_Categort_List();
-        $producList=array();
-        //     количество продуктов
-        $producList=Product::get_news_products(9);
-        include_once ( SITE_ROOT.'/views/user/page_u_register.php');
-         */
+
         return true;
     }
 }

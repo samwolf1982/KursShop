@@ -1,5 +1,6 @@
 <?php
 include_once SITE_ROOT . '/store/Store.php';
+include_once SITE_ROOT . '/components/Db.php';
 /**
  * класс модели News
  */
@@ -12,12 +13,24 @@ class User
 
     }
 
-    public static function edit($u_id, $name, $pass)
+    public static function edit($id, $name, $password)
     {
         # code...
-        // to db  UPDATE
+        // Соединение с БД
+        $db = Db::getConnection();
 
-        return true;
+        // Текст запроса к БД
+        $sql = "UPDATE user
+            SET name = :name, password = :password
+            WHERE id = :id";
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        return $result->execute();
+
     }
 
     public static function isGuest()
@@ -31,11 +44,25 @@ class User
         # code...
     }
 
-    public static function getUserById()
+    public static function getUserById($id)
     {
 
-        // to bd
-        return array('name' => 'Ivan', 'pass' => '1111');
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM user WHERE id = :id';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        //  print_r($result->fetch());die();
+        return $result->fetch();
         # code...
     }
 
@@ -46,7 +73,7 @@ class User
             return $_SESSION['user'];
 
         } else {
-            header('Location: /user/login');
+            //  header('Location: /user/login');
         }
 
         # code...

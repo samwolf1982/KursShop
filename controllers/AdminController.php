@@ -13,88 +13,13 @@ define('MAX_PRODUCTS', 9);
 class AdminController extends AdminBase
 {
 
-    public function __construct($argument = '')
-    {
-        # code...
-    }
-
-    //      редактор продуктов
-    public function actionProducts()
-    {
-
-        if (self::is_admin()) {
-            // select * products
-
-            $v = new Store();
-            $products = $v->get_all_products();
-            include_once SITE_ROOT . '/views/admin/edit_products.php';
-
-        } else {
-            header('Location: /');
-
-        }
-
-        return true;
-
-    }
-
-    public function actionproductEdit($id)
-    {
-
-        if (self::is_admin()) {
-            // select * products
-
-            //  echo "del ".$id;
-            //    die();
-            // to bd delete prod
-
-            /* $ref=$_SERVER['HTTP_REFERER'];
-            header('Location: '.$ref );*/
-
-            $v = new Store();
-            $product = $v->get_product_id($id);
-            include_once SITE_ROOT . '/views/admin/edit_product.php';
-
-        } else {
-            header('Location: /');
-
-        }
-
-        return true;
-
-    }
-
-    //      удалить продукт из базы
-    public function actionproductDelete($id)
-    {
-
-        if (self::is_admin()) {
-            // select * products
-
-            //  echo "del ".$id;
-            //    die();
-            // to bd delete prod
-
-            $ref = $_SERVER['HTTP_REFERER'];
-            header('Location: ' . $ref);
-
-            $v = new Store();
-            $products = $v->get_all_products();
-            include_once SITE_ROOT . '/views/admin/edit_products.php';
-
-        } else {
-            header('Location: /');
-
-        }
-
-        return true;
-
-    }
-    //     action index
+    /**
+     * Action для стартовой страницы "Панель администратора"
+     */
     public function actionIndex($value = '')
     {
 
-        if (self::is_admin()) {
+        if (self::isAdmin()) {
 
             include_once SITE_ROOT . '/views/admin/main_page_admin.php';
 

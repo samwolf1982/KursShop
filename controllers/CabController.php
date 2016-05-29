@@ -7,16 +7,12 @@ include_once SITE_ROOT . '/models/User.php';
 class CabController
 {
 
-    public function __construct($argument = '')
-    {
-        # code...
-    }
     //     показать весь список новостей
     public function actionIndex($value = '')
     {
         //      если пользователь аут. то берем ид иначе переадресация на user/login
         $user_id = User::islogged();
-        echo "CabController actionIndex    $user_id" . PHP_EOL;
+        //  echo "CabController actionIndex    $user_id" . PHP_EOL;
         # code...
         /* $newsList=array();
         $newsList=News::getNewsList();*/

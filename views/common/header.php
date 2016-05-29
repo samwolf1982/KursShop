@@ -68,7 +68,7 @@ include_once SITE_ROOT . '/controllers/AdminBase.php';
         <!-- Правая часть  -->
         <div id="header_right">
 
-       <?php if (AdminBase::is_admin()): ?>
+       <?php if (AdminBase::isAdmin()): ?>
                     <a href="/admin"><?php echo $translate['admin_panel']; ?></a>
           <?php endif;?>
 
