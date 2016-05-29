@@ -45,16 +45,13 @@ ddsmoothmenu.init({
 </head>
 <?php
 
-                     //   from language.php
-  //  $translate        
+//   from language.php
+//  $translate
 
-
-
-  $translate =include (SITE_ROOT.'/components/language.php');
-   include_once (SITE_ROOT.'/models/User.php');
-    include_once (SITE_ROOT.'/models/Cart.php');
-      include_once (SITE_ROOT.'/controllers/AdminBase.php');
-
+$translate = include SITE_ROOT . '/components/language.php';
+include_once SITE_ROOT . '/models/User.php';
+include_once SITE_ROOT . '/models/Cart.php';
+include_once SITE_ROOT . '/controllers/AdminBase.php';
 
 ?>
 
@@ -64,7 +61,7 @@ ddsmoothmenu.init({
 <div id="templatemo_wrapper">
 
 	<div id="templatemo_header">
-    	
+
     	<div id="site_title">
         	<h1><a href="#">MotoOne</a></h1>
         </div>
@@ -72,44 +69,45 @@ ddsmoothmenu.init({
         <div id="header_right">
 
        <?php if (AdminBase::is_admin()): ?>
-                    <a href="/admin"><?php echo $translate['admin_panel']; ?></a> 
-          <?php endif ?>
+                    <a href="/admin"><?php echo $translate['admin_panel']; ?></a>
+          <?php endif;?>
 
-	      
-        
-          | <a href="/cart"><?php echo $translate['cart'];  echo " (".Cart::get_count().")"; ?></a> 
 
-            <?php if (User::is_Guest()): ?>
-                   | <a href="/user/login"><?php echo $translate['user_login'];  ?></a>
-          <?php endif ?>
-          
 
-     
-         <?php if (!User::is_Guest()): ?>
-                | <a href="/cab"><?php echo $translate['cab'];  ?> 
-          <?php endif ?>
+          | <a href="/cart"><?php echo $translate['cart'];
+echo " (" . Cart::get_count() . ")"; ?></a>
 
-        
+            <?php if (User::isGuest()): ?>
+                   | <a href="/user/login"><?php echo $translate['user_login']; ?></a>
+          <?php endif;?>
 
- <?php if (User::is_Guest()): ?>
-                       | <a href="/user/register"><?php echo $translate['registration'];  ?></a>
-          <?php endif ?>
 
-          
-          <?php if (!User::is_Guest()): ?>
-                   |  <a href="/user/logout"><?php echo $translate['exit'];  ?></a>
-          <?php endif ?>
-            
+
+         <?php if (!User::isGuest()): ?>
+                | <a href="/cab"><?php echo $translate['cab']; ?>
+          <?php endif;?>
+
+
+
+ <?php if (User::isGuest()): ?>
+                       | <a href="/user/register"><?php echo $translate['registration']; ?></a>
+          <?php endif;?>
+
+
+          <?php if (!User::isGuest()): ?>
+                   |  <a href="/user/logout"><?php echo $translate['exit']; ?></a>
+          <?php endif;?>
+
 		</div>
-        
+
         <div class="cleaner"></div>
     </div> <!-- END of templatemo_header -->
-    
+
     <div id="templatemo_menu">
     	<div id="top_nav" class="ddsmoothmenu">
             <ul>
-                <li><a href="/"><?php echo $translate['home'];  ?></a></li>
-                <li><a href="/catalog" class="selected"><?php echo $translate['catalog'];  ?></a>
+                <li><a href="/"><?php echo $translate['home']; ?></a></li>
+                <li><a href="/catalog" class="selected"><?php echo $translate['catalog']; ?></a>
                     <ul>
                         <li><a href="/product/1">Товар 1</a></li>
                         <li><a href="/product/5">Товар 2</a></li>
@@ -117,17 +115,11 @@ ddsmoothmenu.init({
                   </ul>
                 </li>
                 <li><a href="/about">Про нас</a>
-               <!--      <ul>
-                        <li><a href="#submenu1">Sub menu 1</a></li>
-                        <li><a href="#submenu2">Sub menu 2</a></li>
-                        <li><a href="#submenu3">Sub menu 3</a></li>
-                        <li><a href="#submenu4">Sub menu 4</a></li>
-                        <li><a href="#submenu5">Sub menu 5</a></li>
-                  </ul> -->
+
                 </li>
                 <li><a href="/news">Новости</a></li>
-                <li><a href="checkout.html">Checkout</a></li>
-                <li><a href="/contacts"><?php echo $translate['contacts'];  ?></a></li>
+
+                <li><a href="/contacts"><?php echo $translate['contacts']; ?></a></li>
             </ul>
             <br style="clear: left" />
         </div> <!-- end of ddsmoothmenu -->
@@ -146,4 +138,4 @@ ddsmoothmenu.init({
     </div> <!-- END of templatemo_menu -->
 
 
-    
+

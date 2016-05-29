@@ -1,24 +1,25 @@
 <?php
 
-include_once SITE_ROOT.'/views/common/header.php';
+include_once SITE_ROOT . '/views/common/header.php';
 ?>
-    
+
 
 
         <div id="content" class="faq float_r">
 
                             <!-- $news из контролера   -->
                             <!-- сокращенная запись -->
-           
-    
-            <h2><?php echo $news->get_title(); ?></h2>
-            <p><?php echo $news->get_date(); ?></p>
-            <p> <?php echo $news->get_full_content(); ?></p>
-                         <p>Автор: <?php echo $news->get_author(); ?></p>
+
+
+            <h2><?php echo $news[0]['title']; ?></h2>
+            <p><?php echo $news[0]['date']; ?></p>
+            <p><?php echo $news[0]['time_create']; ?></p>
+            <p> <?php echo $news[0]['content']; ?></p>
+                         <p>Автор: <?php echo $news[0]['name']; ?></p>
                          <p><a href="/news/"> Вернуться к списку новостей</a></p>
-           
-            
-        </div> 
+
+
+        </div>
         <div class="cleaner"></div>
     </div> <!-- END of templatemo_main -->
 
@@ -28,8 +29,7 @@ include_once SITE_ROOT.'/views/common/header.php';
 
 
 
-
 <?php
-include_once SITE_ROOT.'/views/common/footer.php';
+include_once SITE_ROOT . '/views/common/footer.php';
 
 ?>

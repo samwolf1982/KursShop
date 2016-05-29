@@ -1,51 +1,90 @@
 <?php
 
 // имитация бд
-include_once (SITE_ROOT.'/store/Store.php');
+include_once SITE_ROOT . '/store/Store.php';
 /**
-* класс модели News
-*/
-class News 
+ * класс модели News
+ */
+class News
 {
-   
 
-	function __construct($argument='')
-	{
-		# code...
+    public function __construct($argument = '')
+    {
+        # code...
 
-	}
+    }
 
-	/**
-	*    возвращает новость по ид
-	*/
-	public static  function getNewsItemId($id)
-	{
-		# code...
-		 $localStore=new Store(); // локальное хранилище
+    /**
+     *    возвращает новость по ид
+     */
+    public static function getNewsItemId($id)
+    {
 
-	
-           return $localStore->get_news_id($id);
- 
+        # code...
+        // Соединение с БД
+        $db = Db::getConnection();
 
-	}
+        // Текст запроса к БД
+        $sql = "SELECT * FROM `blog` as b INNER JOIN user as u WHERE `u_id` =u.id and b.id=$id";
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
 
-     /**
-	*    возвращает новость список новостей
-	*/
-		public static  function getNewsList()
-	{
-		# code...
-		  $localStore=new Store(); // локальное хранилище
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
 
-		$arr=array();
-            for ($i=0; $i < 10; $i++) { 
-            	# code...
-               $arr[]= $localStore->get_news_id($i);
-              // var_dump($localStore->get_news_id($i));
-            }
-            return $arr;
+        // Выполнение коменды
+        $result->execute();
 
-	}
+        // Получение и возврат результата
+        $i = 0;
+        $newsList = array();
+        while ($row = $result->fetch()) {
+            $newsList[$i]['id'] = $row['id'];
+            $newsList[$i]['u_id'] = $row['u_id'];
+            $newsList[$i]['content'] = $row['content'];
+            $newsList[$i]['date'] = $row['date'];
+            $newsList[$i]['time_create'] = $row['time_create'];
+            $newsList[$i]['title'] = $row['title'];
+            $newsList[$i]['name'] = $row['name'];
+            $i++;
+        }
+
+        return $newsList;
+
+    }
+
+    /**
+     *    возвращает новость список новостей
+     */
+    public static function getNewsList()
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = "SELECT * FROM `blog`";
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+
+        // Выполнение коменды
+        $result->execute();
+
+        // Получение и возврат результатов
+        $i = 0;
+        $newsList = array();
+        while ($row = $result->fetch()) {
+            $newsList[$i]['id'] = $row['id'];
+            $newsList[$i]['u_id'] = $row['u_id'];
+            $newsList[$i]['content'] = $row['content'];
+            $newsList[$i]['date'] = $row['date'];
+            $newsList[$i]['time_create'] = $row['time_create'];
+            $newsList[$i]['title'] = $row['title'];
+            $i++;
+        }
+        return $newsList;
+
+    }
 }
-
-?>

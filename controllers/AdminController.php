@@ -1,131 +1,110 @@
-<?php 
-include_once ( SITE_ROOT.'/models/Category.php');
-include_once ( SITE_ROOT.'/models/Product.php');
+<?php
 
-include_once ( SITE_ROOT.'/components/Pagination.php');
-include_once ( 'AdminBase.php');
- 
-define('MAX_PRODUCTS', 9);  
- /**
+include_once SITE_ROOT . '/models/Category.php';
+include_once SITE_ROOT . '/models/Product.php';
+
+include_once SITE_ROOT . '/components/Pagination.php';
+include_once 'AdminBase.php';
+
+define('MAX_PRODUCTS', 9);
+/**
  *  отображение главной страницы
  */
- class AdminController extends AdminBase
- {
- 	
- 	function __construct($argument='')
- 	{
- 		# code...
- 	}
+class AdminController extends AdminBase
+{
 
+    public function __construct($argument = '')
+    {
+        # code...
+    }
 
-   //      редактор продуктов
- 		public function actionProducts()
-	{
+    //      редактор продуктов
+    public function actionProducts()
+    {
 
-	if(self::is_admin()){
-   // select * products
+        if (self::is_admin()) {
+            // select * products
 
-		          
-		          $v=new Store();
-                  $products=$v->get_all_products();
-                  include_once ( SITE_ROOT.'/views/admin/edit_products.php');
-              
-		}
-		else{
-      header('Location: /');
+            $v = new Store();
+            $products = $v->get_all_products();
+            include_once SITE_ROOT . '/views/admin/edit_products.php';
 
-		}
-	              
+        } else {
+            header('Location: /');
 
-		return true;
+        }
 
+        return true;
 
-	}
+    }
 
+    public function actionproductEdit($id)
+    {
 
-	 		public function actionProduct_edit($id)
-	{
+        if (self::is_admin()) {
+            // select * products
 
-	if(self::is_admin()){
-   // select * products
+            //  echo "del ".$id;
+            //    die();
+            // to bd delete prod
 
-		         //  echo "del ".$id;
-		       //    die();
-   // to bd delete prod
+            /* $ref=$_SERVER['HTTP_REFERER'];
+            header('Location: '.$ref );*/
 
-		/* $ref=$_SERVER['HTTP_REFERER'];
-		 header('Location: '.$ref );*/
+            $v = new Store();
+            $product = $v->get_product_id($id);
+            include_once SITE_ROOT . '/views/admin/edit_product.php';
 
+        } else {
+            header('Location: /');
 
-		          $v=new Store();
-                  $product=$v->get_product_id($id);
-                  include_once ( SITE_ROOT.'/views/admin/edit_product.php');
-              
-		}
-		else{
-      header('Location: /');
+        }
 
-		}
-	              
+        return true;
 
-		return true;
+    }
 
+    //      удалить продукт из базы
+    public function actionproductDelete($id)
+    {
 
-	}
-     
+        if (self::is_admin()) {
+            // select * products
 
-   //      удалить продукт из базы
- 		public function actionProduct_delete($id)
-	{
+            //  echo "del ".$id;
+            //    die();
+            // to bd delete prod
 
-	if(self::is_admin()){
-   // select * products
+            $ref = $_SERVER['HTTP_REFERER'];
+            header('Location: ' . $ref);
 
-		         //  echo "del ".$id;
-		       //    die();
-   // to bd delete prod
+            $v = new Store();
+            $products = $v->get_all_products();
+            include_once SITE_ROOT . '/views/admin/edit_products.php';
 
-		 $ref=$_SERVER['HTTP_REFERER'];
-		 header('Location: '.$ref );
+        } else {
+            header('Location: /');
 
+        }
 
-		          $v=new Store();
-                  $products=$v->get_all_products();
-                  include_once ( SITE_ROOT.'/views/admin/edit_products.php');
-              
-		}
-		else{
-      header('Location: /');
+        return true;
 
-		}
-	              
+    }
+    //     action index
+    public function actionIndex($value = '')
+    {
 
-		return true;
+        if (self::is_admin()) {
 
+            include_once SITE_ROOT . '/views/admin/main_page_admin.php';
 
-	}
- 	//     action index
-	public function actionIndex($value='')
-	{
+        } else {
+            header('Location: /');
 
-		if(self::is_admin()){
+        }
 
-                  include_once ( SITE_ROOT.'/views/admin/main_page_admin.php');
-              
-		}
-		else{
-      header('Location: /');
+        return true;
+    }
+    //     показать вcе товары из определеной категории
 
-		}
-
-		return true;
-	}
-			//     показать вcе товары из определеной категории
-
-
-
-
- }
-
-
- ?>
+}

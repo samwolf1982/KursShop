@@ -1,100 +1,107 @@
 <?php
-
-// имитация бд
-include_once (SITE_ROOT.'/store/Store.php');
+include_once SITE_ROOT . '/store/Store.php';
 /**
-* класс модели News
-*/
-class User 
+ * класс модели News
+ */
+class User
 {
-   
 
-	function __construct($argument='')
-	{
-		# code...
+    public function __construct($argument = '')
+    {
+        # code...
 
-	}
+    }
 
+    public static function edit($u_id, $name, $pass)
+    {
+        # code...
+        // to db  UPDATE
 
-public  static function edit($u_id,$name,$pass)
-{
-    # code...
-    // to db  UPDATE
-
-    return true;
-}
-
-public static function is_Guest()
-{
-    
-              if (isset($_SESSION['user'])) {
-                     return false;
-                 
-              }else
-              {return true;}
-          /*    
-              if (isset($_SESSION['user'])) {
-                     return $_SESSION['user'];
-                 
-              }else{
-                               header('Location: /user/login');
-                           }
-              */
-    # code...
-}
-
-
-public static function get_User_By_Id()
-{
-    
-
-     // to bd
-     return  array('name' => 'Ivan','pass'=>'1111' );
-    # code...
-}
-
-public static function is_logged()
-{
-              
-              if (isset($_SESSION['user'])) {
-                     return $_SESSION['user'];
-                 
-              }else{
-                               header('Location: /user/login');
-                           }
-              
-    # code...
-}
-	/**
-	*   регистрация
-	*/
-	public static  function register($name,$email,$password)
-	{
-               
-                       // todo register user
-		# code...
-		 //$localStore=new Store(); // локальное хранилище
-
-	
-           //return $localStore->get_news_id($id);
         return true;
+    }
 
-	}
+    public static function isGuest()
+    {
 
-        /**
+        if (isset($_SESSION['user'])) {
+            return false;
+
+        } else {return true;}
+
+        # code...
+    }
+
+    public static function getUserById()
+    {
+
+        // to bd
+        return array('name' => 'Ivan', 'pass' => '1111');
+        # code...
+    }
+
+    public static function isLogged()
+    {
+
+        if (isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+
+        } else {
+            header('Location: /user/login');
+        }
+
+        # code...
+    }
+    /**
+     *   регистрация регистрация пользовтеля
+     */
+    public static function register($name, $email, $password)
+    {
+
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'INSERT INTO user (name, email, password) '
+            . 'VALUES (:name, :email, :password)';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        return $result->execute();
+
+    }
+
+    /**
      * Проверяет cуществования пользователя
      * @param string $name <p>Имя</p>
      * @return int <p>id поьзователя</p>
      */
-    public static function check_User_Data($name)
+    public static function checkUserData($email, $password)
     {
-        return 999;
-        if (strlen($name) >= 2) {
-            return true;
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM user WHERE email = :email AND password = :password';
+
+        // Получение результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->bindParam(':password', $password, PDO::PARAM_INT);
+        $result->execute();
+
+        // Обращаемся к записи
+        $user = $result->fetch();
+
+        if ($user) {
+            // Если запись существует, возвращаем id пользователя
+            return $user['id'];
         }
         return false;
     }
-           /**
+    /**
      *  аунтефикация пользователя
      * @param string $name <p>Имя</p>
      * @return boolean <p>Результат выполнения метода</p>
@@ -102,20 +109,18 @@ public static function is_logged()
     public static function auth($id)
     {
 
-        
-        $_SESSION['user']=$id;
-               //to do
-/*        return false;
+        $_SESSION['user'] = $id;
+        //to do
+        /*        return false;
         if (strlen($name) >= 2) {
-            return true;
+        return true;
         }
         return false;*/
 
         return true;
     }
 
-
-	    /**
+    /**
      * Проверяет имя: не меньше, чем 2 символа
      * @param string $name <p>Имя</p>
      * @return boolean <p>Результат выполнения метода</p>
@@ -174,7 +179,7 @@ public static function is_logged()
      */
     public static function checkEmailExists($email)
     {
-       /* // Соединение с БД        
+        // Соединение с БД
         $db = Db::getConnection();
 
         // Текст запроса к БД
@@ -184,13 +189,12 @@ public static function is_logged()
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->execute();
+        if ($result->fetchColumn() > 0) {
 
-        if ($result->fetchColumn())*/
             return true;
+        }
+
         return false;
     }
 
- 
 }
-
-?>
