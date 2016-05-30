@@ -1,34 +1,27 @@
 <?php
-include_once ( SITE_ROOT.'/models/Category.php');
-include_once ( SITE_ROOT.'/models/Product.php');
+
 /**
-*      класс контролен для обработки news
-*/
+ * Контроллер ProductController
+ * Товар
+ */
 class ProductController
 {
-	
-	function __construct($argument='')
-	{
-		# code...
-	}
-	public function actionList($value='')
-	{
-		# code...
-		return true;
-	}
-	public function actionView($id)
-	{
 
-		# code...
-			# code...
+    /**
+     * Action для страницы просмотра товара
+     * @param integer $productId <p>id товара</p>
+     */
+    public function actionView($productId)
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
 
-			    $categotyList=array();
-		        $categotyList=Category::get_Categort_List();
-				$product=Product::get_product_Item_Id($id);
- include_once ( SITE_ROOT.'/views/product/singleProduct.php');
-//      print_r($news);
-		return true;
-		return true;
-	}
+        // Получаем инфомрацию о товаре
+        $product = Product::getProductById($productId);
+
+        // Подключаем вид
+        require_once(ROOT . '/views/product/view.php');
+        return true;
+    }
+
 }
-?>

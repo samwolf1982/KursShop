@@ -1,27 +1,50 @@
 <?php
-include_once SITE_ROOT . '/store/Store.php';
-include_once SITE_ROOT . '/components/Db.php';
+
 /**
- * класс модели News
+ * Класс User - модель для работы с пользователями
  */
 class User
 {
 
-    public function __construct($argument = '')
+    /**
+     * Регистрация пользователя 
+     * @param string $name <p>Имя</p>
+     * @param string $email <p>E-mail</p>
+     * @param string $password <p>Пароль</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function register($name, $email, $password)
     {
-        # code...
-
-    }
-
-    public static function edit($id, $name, $password)
-    {
-        # code...
         // Соединение с БД
         $db = Db::getConnection();
 
         // Текст запроса к БД
-        $sql = "UPDATE user
-            SET name = :name, password = :password
+        $sql = 'INSERT INTO user (name, email, password) '
+                . 'VALUES (:name, :email, :password)';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
+        return $result->execute();
+    }
+
+    /**
+     * Редактирование данных пользователя
+     * @param integer $id <p>id пользователя</p>
+     * @param string $name <p>Имя</p>
+     * @param string $password <p>Пароль</p>
+     * @return boolean <p>Результат выполнения метода</p>
+     */
+    public static function edit($id, $name, $password)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = "UPDATE user 
+            SET name = :name, password = :password 
             WHERE id = :id";
 
         // Получение и возврат результатов. Используется подготовленный запрос
@@ -30,80 +53,13 @@ class User
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
-
-    }
-
-    public static function isGuest()
-    {
-
-        if (isset($_SESSION['user'])) {
-            return false;
-
-        } else {return true;}
-
-        # code...
-    }
-
-    public static function getUserById($id)
-    {
-
-        // Соединение с БД
-        $db = Db::getConnection();
-
-        // Текст запроса к БД
-        $sql = 'SELECT * FROM user WHERE id = :id';
-
-        // Получение и возврат результатов. Используется подготовленный запрос
-        $result = $db->prepare($sql);
-        $result->bindParam(':id', $id, PDO::PARAM_INT);
-
-        // Указываем, что хотим получить данные в виде массива
-        $result->setFetchMode(PDO::FETCH_ASSOC);
-        $result->execute();
-
-        //  print_r($result->fetch());die();
-        return $result->fetch();
-        # code...
-    }
-
-    public static function isLogged()
-    {
-
-        if (isset($_SESSION['user'])) {
-            return $_SESSION['user'];
-
-        } else {
-            //  header('Location: /user/login');
-        }
-
-        # code...
-    }
-    /**
-     *   регистрация регистрация пользовтеля
-     */
-    public static function register($name, $email, $password)
-    {
-
-        // Соединение с БД
-        $db = Db::getConnection();
-
-        // Текст запроса к БД
-        $sql = 'INSERT INTO user (name, email, password) '
-            . 'VALUES (:name, :email, :password)';
-
-        // Получение и возврат результатов. Используется подготовленный запрос
-        $result = $db->prepare($sql);
-        $result->bindParam(':name', $name, PDO::PARAM_STR);
-        $result->bindParam(':email', $email, PDO::PARAM_STR);
-        $result->bindParam(':password', $password, PDO::PARAM_STR);
-        return $result->execute();
-
     }
 
     /**
-     * Проверяет cуществования пользователя
-     * @param string $name <p>Имя</p>
-     * @return int <p>id поьзователя</p>
+     * Проверяем существует ли пользователь с заданными $email и $password
+     * @param string $email <p>E-mail</p>
+     * @param string $password <p>Пароль</p>
+     * @return mixed : integer user id or false
      */
     public static function checkUserData($email, $password)
     {
@@ -128,22 +84,41 @@ class User
         }
         return false;
     }
+
     /**
-     *  аунтефикация пользователя
-     * @param string $name <p>Имя</p>
+     * Запоминаем пользователя
+     * @param integer $userId <p>id пользователя</p>
+     */
+    public static function auth($userId)
+    {
+        // Записываем идентификатор пользователя в сессию
+        $_SESSION['user'] = $userId;
+    }
+
+    /**
+     * Возвращает идентификатор пользователя, если он авторизирован.<br/>
+     * Иначе перенаправляет на страницу входа
+     * @return string <p>Идентификатор пользователя</p>
+     */
+    public static function checkLogged()
+    {
+        // Если сессия есть, вернем идентификатор пользователя
+        if (isset($_SESSION['user'])) {
+            return $_SESSION['user'];
+        }
+
+        header("Location: /user/login");
+    }
+
+    /**
+     * Проверяет является ли пользователь гостем
      * @return boolean <p>Результат выполнения метода</p>
      */
-    public static function auth($id)
+    public static function isGuest()
     {
-
-        $_SESSION['user'] = $id;
-        //to do
-        /*        return false;
-        if (strlen($name) >= 2) {
-        return true;
+        if (isset($_SESSION['user'])) {
+            return false;
         }
-        return false;*/
-
         return true;
     }
 
@@ -206,7 +181,7 @@ class User
      */
     public static function checkEmailExists($email)
     {
-        // Соединение с БД
+        // Соединение с БД        
         $db = Db::getConnection();
 
         // Текст запроса к БД
@@ -216,12 +191,34 @@ class User
         $result = $db->prepare($sql);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->execute();
-        if ($result->fetchColumn() > 0) {
 
+        if ($result->fetchColumn())
             return true;
-        }
-
         return false;
+    }
+
+    /**
+     * Возвращает пользователя с указанным id
+     * @param integer $id <p>id пользователя</p>
+     * @return array <p>Массив с информацией о пользователе</p>
+     */
+    public static function getUserById($id)
+    {
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT * FROM user WHERE id = :id';
+
+        // Получение и возврат результатов. Используется подготовленный запрос
+        $result = $db->prepare($sql);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Указываем, что хотим получить данные в виде массива
+        $result->setFetchMode(PDO::FETCH_ASSOC);
+        $result->execute();
+
+        return $result->fetch();
     }
 
 }

@@ -157,7 +157,7 @@ class Product
 
         // Текст запроса к БД
         $sql = "SELECT * FROM product WHERE status='1' AND id IN ($idsString)";
-
+        //print_r($sql);die();
         $result = $db->query($sql);
 
         // Указываем, что хотим получить данные в виде массива

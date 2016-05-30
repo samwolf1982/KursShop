@@ -1,94 +1,90 @@
 <?php
-/**
- *  класс роутер
- */
 
+/**
+ * Класс Router
+ * Компонент для работы с маршрутами
+ */
 class Router
 {
+
     /**
-     * массив содержащий список всех роутов (слаги)
+     * Свойство для хранения массива роутов
+     * @var array 
      */
     private $routes;
 
+    /**
+     * Конструктор
+     */
     public function __construct()
     {
-        $this->routes = include SITE_ROOT . '/config/routes.php';
-        # code...
+        // Путь к файлу с роутами
+        $routesPath = ROOT . '/config/routes.php';
 
+        // Получаем роуты из файла
+        $this->routes = include($routesPath);
     }
+
     /**
-     * метод возвращает url
-     *return string
+     * Возвращает строку запроса
      */
-    private function getUrl()
+    private function getURI()
     {
-        # code...
-        if (!empty($_SERVER["REQUEST_URI"])) {
-            # code...
-            return trim($_SERVER["REQUEST_URI"], '/');
+        if (!empty($_SERVER['REQUEST_URI'])) {
+            return trim($_SERVER['REQUEST_URI'], '/');
         }
-
     }
 
     /**
-     *      метод вызваные из роута самый первый метод
-     *       парсит строку запроса и на основе парсинга вызвает нужный роут и его метод
+     * Метод для обработки запроса
      */
     public function run()
     {
-        # code...
+        // Получаем строку запроса
+        $uri = $this->getURI();
 
-        // получить строку запроса
-        $url = $this->getUrl();
-        // проверить наличие запроса в файле роут
-        // если есть совпадение то проверить какой  контролер и екшн будут обрабатываеть запрос  все происходить в цикле до первого совпадения
-        foreach ($this->routes as $key => $value) {
-            # code...
-            if (preg_match('~' . $key . '~', $url)) {
-                # code...
+        // Проверяем наличие такого запроса в массиве маршрутов (routes.php)
+        foreach ($this->routes as $uriPattern => $path) {
 
-                // получаем внутрений путь(маршрут) из внешнего согласно правилу
+            // Сравниваем $uriPattern и $uri
+            if (preg_match("~$uriPattern~", $uri)) {
 
-                $i_route = preg_replace('~' . $key . '~', $value, $url);
+                // Получаем внутренний путь из внешнего согласно правилу.
+                $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
 
-                // echo "$i_route".PHP_EOL ;       // пример внутренего пути
-                // после того как получили внутрений путь можно определить контролер екшын и параметры
-                //$segments=explode('/', $value);
-                $segments = explode('/', $i_route);
-                // получаем емя контролера и сразу удаляем его из массива
-                $controler_Name = array_shift($segments) . 'Controller';
-                $controler_Name = ucfirst($controler_Name);
+                // Определить контроллер, action, параметры
 
-                // получаем имя екшына  и сразу удаляем его из массива
-                $action_Name = 'action' . ucfirst(array_shift($segments));
-                // у нас найдено имя класса и имя метода который будет обрабатывать запрос  + параметры
-                // после всех удалений остались только параметры
-                $parametrs = $segments;
+                $segments = explode('/', $internalRoute);
 
-                // подключить файл который содержит класс контролеер,
+                $controllerName = array_shift($segments) . 'Controller';
+                $controllerName = ucfirst($controllerName);
 
-                $contollerFileName = SITE_ROOT . '/controllers/' . $controler_Name . '.php';
-                if (file_exists($contollerFileName)) {
-                    include_once $contollerFileName;
+                $actionName = 'action' . ucfirst(array_shift($segments));
+
+                $parameters = $segments;
+
+                // Подключить файл класса-контроллера
+                $controllerFile = ROOT . '/controllers/' .
+                        $controllerName . '.php';
+
+                if (file_exists($controllerFile)) {
+                    include_once($controllerFile);
                 }
-                // после подключения создать объэкт класса контроллера, и вызвать нужный метод
-                $controler_Object = new $controler_Name;
-                //die();
-                //$result=$controler_Object->$action_Name();    // ниже замена для красивого вызова в екшене  nm2-15-00
-                $result = call_user_func_array(array($controler_Object, $action_Name), $parametrs);
 
-                //  echo $result;
-                // если есть результат обрыв цикла
+                // Создать объект, вызвать метод (т.е. action)
+                $controllerObject = new $controllerName;
+
+                /* Вызываем необходимый метод ($actionName) у определенного 
+                 * класса ($controllerObject) с заданными ($parameters) параметрами
+                 */
+                $result = call_user_func_array(array($controllerObject, $actionName), $parameters);
+
+                // Если метод контроллера успешно вызван, завершаем работу роутера
                 if ($result != null) {
-                    # code...
                     break;
                 }
-                // конец регулярного выражения
             }
-
-            //  конец цикла
         }
-
     }
 
 }

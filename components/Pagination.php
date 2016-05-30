@@ -84,7 +84,7 @@ class Pagination
         for ($page = $limits[0]; $page <= $limits[1]; $page++) {
             # Если текущая это текущая страница, ссылки нет и добавляется класс active
             if ($page == $this->current_page) {
-                $links .= '<li  class="active"><a href="#">' . $page . '</a></li>';
+                $links .= '<li class="active"><a href="#">' . $page . '</a></li>';
             } else {
                 # Иначе генерируем ссылку
                 $links .= $this->generateHtml($page);

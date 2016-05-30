@@ -1,82 +1,158 @@
 <?php
 
-include_once SITE_ROOT . '/models/Category.php';
-include_once SITE_ROOT . '/models/Product.php';
-
-include_once SITE_ROOT . '/components/Pagination.php';
-include_once 'AdminBase.php';
-
-define('MAX_PRODUCTS', 9);
 /**
- *  отображение главной страницы
+ * Контроллер AdminProductController
+ * Управление товарами в админпанели
  */
 class AdminProductController extends AdminBase
 {
 
-    public function __construct($argument = '')
+    /**
+     * Action для страницы "Управление товарами"
+     */
+    public function actionIndex()
     {
-        # code...
+        // Проверка доступа
+        self::checkAdmin();
+
+        // Получаем список товаров
+        $productsList = Product::getProductsList();
+
+        // Подключаем вид
+        require_once(ROOT . '/views/admin_product/index.php');
+        return true;
     }
-    //     показать весь список новостей
-    public function actionIndex($value = '')
+
+    /**
+     * Action для страницы "Добавить товар"
+     */
+    public function actionCreate()
     {
+        // Проверка доступа
+        self::checkAdmin();
 
-        if (self::isAdmin()) {
-            // Получаем список товаров
-            $products = Product::getProductsList();
+        // Получаем список категорий для выпадающего списка
+        $categoriesList = Category::getCategoriesListAdmin();
 
-            // Подключаем вид
-            require_once SITE_ROOT . '/views/admin/edit_products.php';
-            return true;
+        // Обработка формы
+        if (isset($_POST['submit'])) {
+            // Если форма отправлена
+            // Получаем данные из формы
+            $options['name'] = $_POST['name'];
+            $options['code'] = $_POST['code'];
+            $options['price'] = $_POST['price'];
+            $options['category_id'] = $_POST['category_id'];
+            $options['brand'] = $_POST['brand'];
+            $options['availability'] = $_POST['availability'];
+            $options['description'] = $_POST['description'];
+            $options['is_new'] = $_POST['is_new'];
+            $options['is_recommended'] = $_POST['is_recommended'];
+            $options['status'] = $_POST['status'];
 
-        } else {
-            header('Location: /');
+            // Флаг ошибок в форме
+            $errors = false;
 
+            // При необходимости можно валидировать значения нужным образом
+            if (!isset($options['name']) || empty($options['name'])) {
+                $errors[] = 'Заполните поля';
+            }
+
+            if ($errors == false) {
+                // Если ошибок нет
+                // Добавляем новый товар
+                $id = Product::createProduct($options);
+
+                // Если запись добавлена
+                if ($id) {
+                    // Проверим, загружалось ли через форму изображение
+                    if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+                        // Если загружалось, переместим его в нужную папке, дадим новое имя
+                        move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                    }
+                };
+
+                // Перенаправляем пользователя на страницу управлениями товарами
+                header("Location: /admin/product");
+            }
         }
 
-        # code...
-        /*     $categotyList=array();
-        $categotyList=Category::get_Categort_List();
-        $producList=array();
-        //     количество продуктов
-        $producList=Product::get_news_products(20);
-        include_once ( SITE_ROOT.'/views/catalog/catalog_page.php');*/
-
-        // echo "List News ".PHP_EOL;
-        //print_r($newsList);
-        // var_dump($newsList);
-        //echo "List news";
+        // Подключаем вид
+        require_once(ROOT . '/views/admin_product/create.php');
         return true;
     }
-    //     показать вcе товары из определеной категории
-    public function actionProducts()
+
+    /**
+     * Action для страницы "Редактировать товар"
+     */
+    public function actionUpdate($id)
     {
+        // Проверка доступа
+        self::checkAdmin();
 
-        /*echo "SiteController actionIndex".PHP_EOL;
-        echo "cat: ".$id.PHP_EOL;
-        echo "page".$page.PHP_EOL;
-         */
-# /*/*code...
-        /* $categotyList=array();
-        $categotyList=Category::get_Categort_List();
-        $producList=array();
-        $categoty_name = Category::get_Category_Id($id)->get_name();
-        //    товары только с одной категории !!
-        //     ofset реализовать смещениее в бд !!
-        $producList=Product::get_category_products($id,$page);
+        // Получаем список категорий для выпадающего списка
+        $categoriesList = Category::getCategoriesListAdmin();
 
-        $totalcount=20;
+        // Получаем данные о конкретном заказе
+        $product = Product::getProductById($id);
 
-        $pagination=new Pagination($totalcount,$page,MAX_PRODUCTS,'page-');
+        // Обработка формы
+        if (isset($_POST['submit'])) {
+            // Если форма отправлена
+            // Получаем данные из формы редактирования. При необходимости можно валидировать значения
+            $options['name'] = $_POST['name'];
+            $options['code'] = $_POST['code'];
+            $options['price'] = $_POST['price'];
+            $options['category_id'] = $_POST['category_id'];
+            $options['brand'] = $_POST['brand'];
+            $options['availability'] = $_POST['availability'];
+            $options['description'] = $_POST['description'];
+            $options['is_new'] = $_POST['is_new'];
+            $options['is_recommended'] = $_POST['is_recommended'];
+            $options['status'] = $_POST['status'];
 
-        include_once ( SITE_ROOT.'/views/catalog/category_page.php');*/
+            // Сохраняем изменения
+            if (Product::updateProductById($id, $options)) {
 
-        // echo "List News ".PHP_EOL;
-        //print_r($newsList);
-        // var_dump($newsList);
-        //echo "List news";
+
+                // Если запись сохранена
+                // Проверим, загружалось ли через форму изображение
+                if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
+
+                    // Если загружалось, переместим его в нужную папке, дадим новое имя
+                   move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                }
+            }
+
+            // Перенаправляем пользователя на страницу управлениями товарами
+            header("Location: /admin/product");
+        }
+
+        // Подключаем вид
+        require_once(ROOT . '/views/admin_product/update.php');
         return true;
+    }
 
+    /**
+     * Action для страницы "Удалить товар"
+     */
+    public function actionDelete($id)
+    {
+        // Проверка доступа
+        self::checkAdmin();
+
+        // Обработка формы
+        if (isset($_POST['submit'])) {
+            // Если форма отправлена
+            // Удаляем товар
+            Product::deleteProductById($id);
+
+            // Перенаправляем пользователя на страницу управлениями товарами
+            header("Location: /admin/product");
+        }
+
+        // Подключаем вид
+        require_once(ROOT . '/views/admin_product/delete.php');
+        return true;
     }
 
 }

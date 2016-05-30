@@ -1,73 +1,48 @@
-<?php 
-include_once ( SITE_ROOT.'/models/Category.php');
-include_once ( SITE_ROOT.'/models/Product.php');
+<?php
 
-include_once ( SITE_ROOT.'/components/Pagination.php');
- 
-define('MAX_PRODUCTS', 9);  
- /**
- *  отображение главной страницы
+/**
+ * Контроллер CatalogController
+ * Каталог товаров
  */
- class CatalogController
- {
- 	
- 	function __construct($argument='')
- 	{
- 		# code...
- 	}
- 	//     показать весь список новостей
-	public function actionIndex($value='')
-	{
-		//echo "SiteController actionIndex";
-		# code...
-		 $categotyList=array();
-		 $categotyList=Category::get_Categort_List();
-		 $producList=array();
-		                         //     количество продуктов
-		 $producList=Product::get_news_products(20);
-          include_once ( SITE_ROOT.'/views/catalog/catalog_page.php');
+class CatalogController
+{
 
-     // echo "List News ".PHP_EOL;
-      //print_r($newsList);
-		// var_dump($newsList);
-		//echo "List news"; 
-		return true;
-	}
-		//     показать вcе товары из определеной категории
-	public function actionCategory($id='',$page=1)
-	{
+    /**
+     * Action для страницы "Каталог товаров"
+     */
+    public function actionIndex()
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
 
+        // Список последних товаров
+        $latestProducts = Product::getLatestProducts(12);
 
-      
-		/*echo "SiteController actionIndex".PHP_EOL;
-				echo "cat: ".$id.PHP_EOL;
-						echo "page".$page.PHP_EOL;
-*/		
-# code...  
-		 $categotyList=array();
-		 $categotyList=Category::get_Categort_List();
-		 $producList=array();
-		 $categoty_name = Category::get_Category_Id($id)->get_name();
-		                         //    товары только с одной категории !!
-		                           //     ofset реализовать смещениее в бд !!
-		 $producList=Product::get_category_products($id,$page);
+        // Подключаем вид
+        require_once(ROOT . '/views/catalog/index.php');
+        return true;
+    }
 
-         $totalcount=20; 
+    /**
+     * Action для страницы "Категория товаров"
+     */
+    public function actionCategory($categoryId, $page = 1)
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
 
-		 $pagination=new Pagination($totalcount,$page,MAX_PRODUCTS,'page-');
+        // Список товаров в категории
+        $categoryProducts = Product::getProductsListByCategory($categoryId, $page);
 
-		
-          include_once ( SITE_ROOT.'/views/catalog/category_page.php');
+        // Общее количетсво товаров (необходимо для постраничной навигации)
+        $total = Product::getTotalProductsInCategory($categoryId);
 
-     // echo "List News ".PHP_EOL;
-      //print_r($newsList);
-		// var_dump($newsList);
-		//echo "List news"; 
-		return true;
-	}
+        // Создаем объект Pagination - постраничная навигация
+        $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
 
+        // Подключаем вид
+        require_once(ROOT . '/views/catalog/category.php');
+        return true;
+    }
 
- }
-
-
- ?>
+}

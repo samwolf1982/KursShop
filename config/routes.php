@@ -1,32 +1,46 @@
 <?php
-// Массив с параметрами роутов ключ это то что нам приходит через get post а значение обрабатываеться  классом  Router в components/Router.php
-return $arrayName = array(
-    'news/([a-z]+)/([0-9]+)' => 'news/view/$1/$2', // второй уровень использовано регулярное выражение для  определения ид записи
-    'news/([([0-9]+)' => 'news/view/$1/', //
-    'user/login' => 'user/login/',
-    'user/logout' => 'user/logout/',
-    'user/register' => 'user/register/',
-    'user/edit' => 'user/edit/',
-    'contacts' => 'site/contacts/',
-    'cart/([([0-9]+)' => 'cart/add/$1/', //
-    'cart' => 'cart/index/', //
-    'admin/product/delete/([0-9]+)' => 'admin/product_delete/$1',
-    'admin/product/edit/([0-9]+)' => 'admin/product_edit/$1',
-    'admin/products' => 'adminProduct/index',
-    'admin' => 'admin/index/', //
-    'admin/gategories' => 'admin/gategories/',
-    'admin/orders' => 'admin/orders/',
-    'cab' => 'cab/index', // метод аction_index в контролере
-    'news' => 'news/index', // метод аction_index в контролере NewsConttroler
-    'products' => 'products/list',
-    'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2',
-    'category/([0-9]+)' => 'catalog/category/$1',
-    //// метод аction_list в контролере ProductConttroler
-    'product/([a-z]+)/([0-9]+)' => 'product/view/$1/$2',
-    // второй уровень использовано регулярное выражение для  определения ид записи
-    'product/([([0-9]+)' => 'product/view/$1/', //
-    'about' => 'about/view', //
-    'catalog' => 'catalog/index', //
-    '' => 'site/index', // при пустом запросе контролер SiteControler вызов actionIndex
 
+return array(
+    // Товар:
+    'product/([0-9]+)' => 'product/view/$1', // actionView в ProductController
+    // Каталог:
+    'catalog' => 'catalog/index', // actionIndex в CatalogController
+    // Категория товаров:
+    'category/([0-9]+)/page-([0-9]+)' => 'catalog/category/$1/$2', // actionCategory в CatalogController   
+    'category/([0-9]+)' => 'catalog/category/$1', // actionCategory в CatalogController
+    // Корзина:
+    'cart/checkout' => 'cart/checkout', // actionAdd в CartController    
+    'cart/delete/([0-9]+)' => 'cart/delete/$1', // actionDelete в CartController    
+    'cart/add/([0-9]+)' => 'cart/add/$1', // actionAdd в CartController    
+    'cart/addAjax/([0-9]+)' => 'cart/addAjax/$1', // actionAddAjax в CartController
+    'cart' => 'cart/index', // actionIndex в CartController
+    // Пользователь:
+    'user/register' => 'user/register',
+    'user/login' => 'user/login',
+    'user/logout' => 'user/logout',
+    'cabinet/edit' => 'cabinet/edit',
+    'cabinet' => 'cabinet/index',
+    // Управление товарами:    
+    'admin/product/create' => 'adminProduct/create',
+    'admin/product/update/([0-9]+)' => 'adminProduct/update/$1',
+    'admin/product/delete/([0-9]+)' => 'adminProduct/delete/$1',
+    'admin/product' => 'adminProduct/index',
+    // Управление категориями:    
+    'admin/category/create' => 'adminCategory/create',
+    'admin/category/update/([0-9]+)' => 'adminCategory/update/$1',
+    'admin/category/delete/([0-9]+)' => 'adminCategory/delete/$1',
+    'admin/category' => 'adminCategory/index',
+    // Управление заказами:    
+    'admin/order/update/([0-9]+)' => 'adminOrder/update/$1',
+    'admin/order/delete/([0-9]+)' => 'adminOrder/delete/$1',
+    'admin/order/view/([0-9]+)' => 'adminOrder/view/$1',
+    'admin/order' => 'adminOrder/index',
+    // Админпанель:
+    'admin' => 'admin/index',
+    // О магазине
+    'contacts' => 'site/contact',
+    'about' => 'site/about',
+    // Главная страница
+    'index.php' => 'site/index', // actionIndex в SiteController
+    '' => 'site/index', // actionIndex в SiteController
 );
