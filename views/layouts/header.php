@@ -81,12 +81,12 @@
                                         <li><a href="/"> <?php echo $translate['home']; ?></a></li>
                                         <li class="dropdown"><a href="#"> <?php echo $translate['shop']; ?><i class="fa fa-angle-down"></i></a>
                                             <ul role="menu" class="sub-menu">
-                                                <li><a href="/catalog/"><?php echo $translate['catalog']; ?></a></li>
+                                                <li><a href="/catalog/"><?php echo $translate['last_update']; ?></a></li>
                                                   <li><a href="/catalogs/"><?php echo $translate['categoryes']; ?></a></li>
                                                 <li><a href="/cart/">Корзина</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="/about/"><?php echo $translate['cart']; ?></a></li>
+                                        <li><a href="/about/"><?php echo $translate['about_shop']; ?></a></li>
                                         <li><a href="/contacts/"><?php echo $translate['contacts']; ?></a></li>
                                     </ul>
                                 </div>

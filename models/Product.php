@@ -7,7 +7,7 @@ class Product
 {
 
     // Количество отображаемых товаров по умолчанию
-    const SHOW_BY_DEFAULT = 16;
+    const SHOW_BY_DEFAULT = 12;
 
     /**
      * Возвращает массив последних товаров
@@ -71,6 +71,49 @@ class Product
         // Используется подготовленный запрос
         $result = $db->prepare($sql);
         $result->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+        $result->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $result->bindParam(':offset', $offset, PDO::PARAM_INT);
+
+        // Выполнение коменды
+        $result->execute();
+
+        // Получение и возврат результатов
+        $i = 0;
+        $products = array();
+        while ($row = $result->fetch()) {
+            $products[$i]['id'] = $row['id'];
+            $products[$i]['name'] = $row['name'];
+            $products[$i]['price'] = $row['price'];
+            $products[$i]['is_new'] = $row['is_new'];
+            $i++;
+        }
+        return $products;
+    }
+
+
+    /**
+     * Возвращает список всех товаров для пагинации запрос делаетьсь со смещением  OFFSET
+     * @param type $page [optional] <p>Номер страницы</p>
+     * @return type <p>Массив с товарами</p>
+     */
+    public static function getProductsListByAll( $page = 1)
+    {
+        $limit = Product::SHOW_BY_DEFAULT;
+        // Смещение (для запроса)
+        $offset = ($page - 1) * self::SHOW_BY_DEFAULT;
+
+        // Соединение с БД
+        $db = Db::getConnection();
+
+        // Текст запроса к БД
+        $sql = 'SELECT id, name, price, is_new FROM product '
+            . 'WHERE status = 1 '
+            . 'ORDER BY id ASC LIMIT :limit OFFSET :offset';
+
+
+        // Используется подготовленный запрос
+        $result = $db->prepare($sql);
+   
         $result->bindParam(':limit', $limit, PDO::PARAM_INT);
         $result->bindParam(':offset', $offset, PDO::PARAM_INT);
 

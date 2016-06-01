@@ -9,16 +9,47 @@ class SiteController
     /**
      * Action для главной страницы
      */
-    public function actionIndex()
+    public function actionIndexDEL()
     {
+        $total=16;
         // Список категорий для левого меню
         $categories = Category::getCategoriesList();
 
         // Список последних товаров
-        $latestProducts = Product::getLatestProducts(6);
+        $latestProducts = Product::getLatestProducts($total);
 
         // Список товаров для слайдера
         $sliderProducts = Product::getRecommendedProducts();
+     
+             // Создаем объект Pagination - постраничная навигация
+        $pagination = new Pagination($total, 1, Product::SHOW_BY_DEFAULT, 'page-');
+
+        // Подключаем вид
+        require_once(PATH_TO_SITE . '/views/site/index.php');
+        return true;
+    }
+
+   /**
+     * Action для главной страницы
+     */
+    public function actionIndex( $page=1)
+    {
+        $total=count( Product::getProductsList());
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
+          
+        // Список всех товаров
+      //  $latestProducts = Product::getProductsList();
+          // Список товаров в категории
+        $latestProducts = Product::getProductsListByAll( $page);
+      //  print_r($latestProducts);
+
+        //die();
+        // Список товаров для слайдера
+      //  $sliderProducts = Product::getRecommendedProducts();
+     
+             // Создаем объект Pagination - постраничная навигация
+        $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
 
         // Подключаем вид
         require_once(PATH_TO_SITE . '/views/site/index.php');

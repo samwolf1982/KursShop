@@ -42,6 +42,9 @@ return array(
     'contacts' => 'site/contact',
     'about' => 'site/about',
     // Главная страница
+
+     'page-([0-9]+)' => 'site/index/$1', // actionCategory в CatalogController   
+    '([0-9]+)' => 'site/index/$1', // actionCategory в CatalogController
     'index.php' => 'site/index', // actionIndex в SiteController
     '' => 'site/index', // actionIndex в SiteController
 );

@@ -79,6 +79,8 @@ return array('categoryes' => 'Категории',
     'checkout' => 'Оформление заказа',
     'year' => 'Год',
     'shop' => 'Магазин',
+       'last_update' => 'Новое поступление',
+         'about_shop' => 'О магазине',
 
 
 );

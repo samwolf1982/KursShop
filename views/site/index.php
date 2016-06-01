@@ -29,7 +29,7 @@ die();*/
 
             <div class="col-sm-9 padding-right">
                 <div class="features_items"><!--features_items-->
-                    <h2 class="title text-center">Последние товары</h2>
+                    <h2 class="title text-center"><?php echo $translate['all_products']; ?></h2>
 
                     <?php foreach ($latestProducts as $product): ?>
                         <div class="col-sm-4">
@@ -45,9 +45,9 @@ die();*/
                                         </p>
                                             <a href="/cart/add/<?php echo $product['id']; ?>" class="btn btn-default add-to-cart" data-id="<?php echo $product['id']; ?>"><i class="fa fa-shopping-cart"></i>В корзину</a>
                                     </div>
-                                    <?php if ($product['is_new']): ?>
+                         <!--            <?php if ($product['is_new']): ?>
                                         <img src="/template/images/home/new.png" class="new" alt="" />
-                                    <?php endif;?>
+                                    <?php endif;?> -->
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,8 @@ die();*/
 
 
                 </div><!--features_items-->
-
+   <!-- Постраничная навигация -->
+                <?php echo $pagination->get(); ?>
         </div>
     </div>
 
