@@ -4,7 +4,7 @@
  * Контроллер AdminProductController
  * Управление товарами в админпанели
  */
-class AdminProductController extends AdminBase
+class AdminProductController extends AdminBaseClass
 {
 
     /**
@@ -19,7 +19,7 @@ class AdminProductController extends AdminBase
         $productsList = Product::getProductsList();
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_product/index.php');
+        require_once PATH_TO_SITE . '/views/admin_product/index.php';
         return true;
     }
 
@@ -65,9 +65,13 @@ class AdminProductController extends AdminBase
                 // Если запись добавлена
                 if ($id) {
                     // Проверим, загружалось ли через форму изображение
+                    // Проверим, загружалось ли через форму изображение
                     if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
                         // Если загружалось, переместим его в нужную папке, дадим новое имя
-                        move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+
+                        move_uploaded_file($_FILES["image"]["tmp_name"], ROOT . "/upload/images/products/{$id}.jpg");
+                        //move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_PATH_TO_SITE'] . "/upload/images/products/{$id}.jpg");
+                        print_r(ROOT);die();
                     }
                 };
 
@@ -77,7 +81,7 @@ class AdminProductController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_product/create.php');
+        require_once PATH_TO_SITE . '/views/admin_product/create.php';
         return true;
     }
 
@@ -113,13 +117,12 @@ class AdminProductController extends AdminBase
             // Сохраняем изменения
             if (Product::updateProductById($id, $options)) {
 
-
                 // Если запись сохранена
                 // Проверим, загружалось ли через форму изображение
                 if (is_uploaded_file($_FILES["image"]["tmp_name"])) {
 
                     // Если загружалось, переместим его в нужную папке, дадим новое имя
-                   move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT'] . "/upload/images/products/{$id}.jpg");
+                    move_uploaded_file($_FILES["image"]["tmp_name"], $_SERVER['DOCUMENT_PATH_TO_SITE'] . "/upload/images/products/{$id}.jpg");
                 }
             }
 
@@ -128,7 +131,7 @@ class AdminProductController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_product/update.php');
+        require_once PATH_TO_SITE . '/views/admin_product/update.php';
         return true;
     }
 
@@ -151,7 +154,7 @@ class AdminProductController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_product/delete.php');
+        require_once PATH_TO_SITE . '/views/admin_product/delete.php';
         return true;
     }
 

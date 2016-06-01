@@ -1,4 +1,4 @@
-<?php include ROOT . '/views/layouts/header.php';?>
+<?php include PATH_TO_SITE . '/views/layouts/header.php';?>
 
 <section>
     <div class="container">
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="view-product">
-                                <img class="img-responsive" src="<?php echo Product::getImage($product['id']); ?>" alt="" />
+                                <img height="250"> class="img-responsive" src="<?php echo Product::getImage($product['id']); ?>" alt="" />
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -62,4 +62,4 @@
     </div>
 </section>
 
-<?php include ROOT . '/views/layouts/footer.php';?>
+<?php include PATH_TO_SITE . '/views/layouts/footer.php';?>

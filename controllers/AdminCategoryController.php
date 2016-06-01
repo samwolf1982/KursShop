@@ -4,7 +4,7 @@
  * Контроллер AdminCategoryController
  * Управление категориями товаров в админпанели
  */
-class AdminCategoryController extends AdminBase
+class AdminCategoryController extends AdminBaseClass
 {
 
     /**
@@ -19,7 +19,7 @@ class AdminCategoryController extends AdminBase
         $categoriesList = Category::getCategoriesListAdmin();
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_category/index.php');
+        require_once(PATH_TO_SITE . '/views/admin_category/index.php');
         return true;
     }
 
@@ -58,7 +58,7 @@ class AdminCategoryController extends AdminBase
             }
         }
 
-        require_once(ROOT . '/views/admin_category/create.php');
+        require_once(PATH_TO_SITE . '/views/admin_category/create.php');
         return true;
     }
 
@@ -89,7 +89,7 @@ class AdminCategoryController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_category/update.php');
+        require_once(PATH_TO_SITE . '/views/admin_category/update.php');
         return true;
     }
 
@@ -112,7 +112,7 @@ class AdminCategoryController extends AdminBase
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin_category/delete.php');
+        require_once(PATH_TO_SITE . '/views/admin_category/delete.php');
         return true;
     }
 

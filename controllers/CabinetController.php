@@ -19,7 +19,7 @@ class CabinetController
         $user = User::getUserById($userId);
 
         // Подключаем вид
-        require_once(ROOT . '/views/cabinet/index.php');
+        require_once(PATH_TO_SITE . '/views/cabinet/index.php');
         return true;
     }
 
@@ -66,7 +66,7 @@ class CabinetController
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/cabinet/edit.php');
+        require_once(PATH_TO_SITE . '/views/cabinet/edit.php');
         return true;
     }
 

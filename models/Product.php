@@ -7,7 +7,7 @@ class Product
 {
 
     // Количество отображаемых товаров по умолчанию
-    const SHOW_BY_DEFAULT = 6;
+    const SHOW_BY_DEFAULT = 16;
 
     /**
      * Возвращает массив последних товаров
@@ -355,9 +355,9 @@ class Product
         $path = '/upload/images/products/';
 
         // Путь к изображению товара
-        $pathToProductImage = $path . $id . '.jpg';
+        return $pathToProductImage = $path . $id . '.jpg';
 
-        if (file_exists($_SERVER['DOCUMENT_ROOT'] . $pathToProductImage)) {
+        if (file_exists($_SERVER['DOCUMENT_PATH_TO_SITE'] . $pathToProductImage)) {
             // Если изображение для товара существует
             // Возвращаем путь изображения товара
             return $pathToProductImage;

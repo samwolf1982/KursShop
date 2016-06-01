@@ -49,7 +49,7 @@ class UserController
         }
 
         // Подключаем вид
-        require_once ROOT . '/views/user/register.php';
+        require_once PATH_TO_SITE . '/views/user/register.php';
         return true;
     }
 
@@ -96,7 +96,7 @@ class UserController
         }
 
         // Подключаем вид
-        require_once ROOT . '/views/user/login.php';
+        require_once PATH_TO_SITE . '/views/user/login.php';
         return true;
     }
 
@@ -106,7 +106,8 @@ class UserController
     public function actionLogout()
     {
         // Стартуем сессию
-        session_start();
+        
+ if ( is_session_started() === FALSE ) session_start();
 
         // Удаляем информацию о пользователе из сессии
         unset($_SESSION["user"]);
@@ -116,4 +117,17 @@ class UserController
         header("Location: /");
     }
 
+}
+
+
+function is_session_started()
+{
+    if ( php_sapi_name() !== 'cli' ) {
+        if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+            return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+        } else {
+            return session_id() === '' ? FALSE : TRUE;
+        }
+    }
+    return FALSE;
 }

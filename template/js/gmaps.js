@@ -1,4 +1,4 @@
-(function(root, factory) {
+(function(PATH_TO_SITE, factory) {
   if(typeof exports === 'object') {
     module.exports = factory();
   }
@@ -6,7 +6,7 @@
     define('GMaps', [], factory);
   }
 
-  root.GMaps = factory();
+  PATH_TO_SITE.GMaps = factory();
 
 }(this, function() {
 
@@ -1558,14 +1558,14 @@ GMaps.prototype.toImage = function(options) {
 GMaps.staticMapURL = function(options){
   var parameters = [],
       data,
-      static_root = 'http://maps.googleapis.com/maps/api/staticmap';
+      static_PATH_TO_SITE = 'http://maps.googleapis.com/maps/api/staticmap';
 
   if (options.url) {
-    static_root = options.url;
+    static_PATH_TO_SITE = options.url;
     delete options.url;
   }
 
-  static_root += '?';
+  static_PATH_TO_SITE += '?';
 
   var markers = options.markers;
   
@@ -1766,7 +1766,7 @@ GMaps.staticMapURL = function(options){
   parameters.push('scale=' + dpi);
 
   parameters = parameters.join('&');
-  return static_root + parameters;
+  return static_PATH_TO_SITE + parameters;
 };
 
 GMaps.prototype.addMapType = function(mapTypeId, options) {

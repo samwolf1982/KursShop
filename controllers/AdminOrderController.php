@@ -4,7 +4,7 @@
  * Контроллер AdminOrderController
  * Управление заказами в админпанели
  */
-class AdminOrderController extends AdminBase
+class AdminOrderController extends AdminBaseClass
 {
 
     /**
@@ -19,7 +19,7 @@ class AdminOrderController extends AdminBase
         $ordersList = Order::getOrdersList();
 
         // Подключаем вид
-        require_once ROOT . '/views/admin_order/index.php';
+        require_once PATH_TO_SITE . '/views/admin_order/index.php';
         return true;
     }
 
@@ -52,7 +52,7 @@ class AdminOrderController extends AdminBase
         }
 
         // Подключаем вид
-        require_once ROOT . '/views/admin_order/update.php';
+        require_once PATH_TO_SITE . '/views/admin_order/update.php';
         return true;
     }
 
@@ -80,7 +80,7 @@ class AdminOrderController extends AdminBase
 
         //$products = $order;
         // Подключаем вид
-        require_once ROOT . '/views/admin_order/view.php';
+        require_once PATH_TO_SITE . '/views/admin_order/view.php';
         return true;
     }
 
@@ -103,7 +103,7 @@ class AdminOrderController extends AdminBase
         //}
 
         // Подключаем вид
-        // require_once ROOT . '/views/admin_order/delete.php';
+        // require_once PATH_TO_SITE . '/views/admin_order/delete.php';
         return true;
     }
 

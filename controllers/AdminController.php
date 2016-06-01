@@ -4,7 +4,7 @@
  * Контроллер AdminController
  * Главная страница в админпанели
  */
-class AdminController extends AdminBase
+class AdminController extends AdminBaseClass
 {
     /**
      * Action для стартовой страницы "Панель администратора"
@@ -15,7 +15,7 @@ class AdminController extends AdminBase
         self::checkAdmin();
 
         // Подключаем вид
-        require_once(ROOT . '/views/admin/index.php');
+        require_once(PATH_TO_SITE . '/views/admin/index.php');
         return true;
     }
 

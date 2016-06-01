@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Главная</title>
+        <title>Домой</title>
         <link href="/template/css/bootstrap.min.css" rel="stylesheet">
         <link href="/template/css/font-awesome.min.css" rel="stylesheet">
         <link href="/template/css/prettyPhoto.css" rel="stylesheet">
@@ -19,7 +19,7 @@
         <![endif]-->
 
     </head><!--/head-->
-
+   <?php  $translate =include (PATH_TO_SITE.'/components/language.php');     ?>
     <body>
         <header id="header"><!--header-->
 
@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-sm-12 plr header_img">
                             <div class="logo pull-left">
-                                <a href="index.html"><img src="images/logo.png" alt="" /></a>
+                                <a href="/"><img src="/upload/logo/logomotoone.png" alt="" /></a>
                             </div>
                         </div>
                     </div>
@@ -40,19 +40,19 @@
      <div class="shop-menu pull-right">
                                     <ul class="nav navbar-nav">
                                         <li><a href="/cart">
-                                                <i class="fa fa-shopping-cart"></i> Корзина
+                                                <i class="fa fa-shopping-cart"></i> <?php echo $translate['cart']; ?>
                                                 (<span id="cart-count"><?php echo Cart::countItems(); ?></span>)
                                             </a>
                                         </li>
                                         <?php if (User::isGuest()): ?>
-                                             <li><a href="/user/register/"><i class="fa fa-unlock"></i> Регистрация</a></li>
+                                             <li><a href="/user/register/"><i class="fa fa-unlock"></i> <?php echo $translate['registration']; ?></a></li>
                                         <?php endif;?>
 
                                         <?php if (User::isGuest()): ?>
-                                            <li><a href="/user/login/"><i class="fa fa-unlock"></i> Вход</a></li>
+                                            <li><a href="/user/login/"><i class="fa fa-unlock"></i> <?php echo $translate['user_login']; ?></a></li>
                                         <?php else: ?>
-                                            <li><a href="/cabinet/"><i class="fa fa-user"></i> Аккаунт</a></li>
-                                            <li><a href="/user/logout/"><i class="fa fa-unlock"></i> Выход</a></li>
+                                            <li><a href="/cabinet/"><i class="fa fa-user"></i>  <?php echo $translate['cab']; ?></a></li>
+                                            <li><a href="/user/logout/"><i class="fa fa-unlock"></i>  <?php echo $translate['exit']; ?></a></li>
                                         <?php endif;?>
                                     </ul>
                                 </div>
@@ -78,15 +78,16 @@
                             </div>
                              <div class="mainmenu pull-left">
                                     <ul class="nav navbar-nav collapse navbar-collapse">
-                                        <li><a href="/">Главная</a></li>
-                                        <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
+                                        <li><a href="/"> <?php echo $translate['home']; ?></a></li>
+                                        <li class="dropdown"><a href="#"> <?php echo $translate['shop']; ?><i class="fa fa-angle-down"></i></a>
                                             <ul role="menu" class="sub-menu">
-                                                <li><a href="/catalog/">Каталог товаров</a></li>
+                                                <li><a href="/catalog/"><?php echo $translate['catalog']; ?></a></li>
+                                                  <li><a href="/catalogs/"><?php echo $translate['categoryes']; ?></a></li>
                                                 <li><a href="/cart/">Корзина</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="/about/">О магазине</a></li>
-                                        <li><a href="/contacts/">Контакты</a></li>
+                                        <li><a href="/about/"><?php echo $translate['cart']; ?></a></li>
+                                        <li><a href="/contacts/"><?php echo $translate['contacts']; ?></a></li>
                                     </ul>
                                 </div>
                         </div>
@@ -95,3 +96,4 @@
             </div><!--/header-bottom-->
 
         </header><!--/header-->
+  

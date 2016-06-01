@@ -1,4 +1,4 @@
-<?php include ROOT . '/views/layouts/header_admin.php'; ?>
+<?php include PATH_TO_SITE . '/views/layouts/header_admin.php'; ?>
 
 <section>
     <div class="container">
@@ -51,5 +51,5 @@
     </div>
 </section>
 
-<?php include ROOT . '/views/layouts/footer_admin.php'; ?>
+<?php include PATH_TO_SITE . '/views/layouts/footer_admin.php'; ?>
 

@@ -19,7 +19,7 @@ class CatalogController
         $latestProducts = Product::getLatestProducts(12);
 
         // Подключаем вид
-        require_once(ROOT . '/views/catalog/index.php');
+        require_once(PATH_TO_SITE . '/views/catalog/index.php');
         return true;
     }
 
@@ -41,8 +41,40 @@ class CatalogController
         $pagination = new Pagination($total, $page, Product::SHOW_BY_DEFAULT, 'page-');
 
         // Подключаем вид
-        require_once(ROOT . '/views/catalog/category.php');
+        require_once(PATH_TO_SITE . '/views/catalog/category.php');
         return true;
     }
+      
 
+     /**
+     * Action для страницы "Список категорий "
+     */
+    public function actionOnlycategory()
+    {
+        // Список категорий для левого меню
+        $categories = Category::getCategoriesList();
+         
+        $firstImageOnCategory=array();
+        
+        foreach ($categories as $key => $value) {
+            # code...
+               //   первое ид товара в категории для картинки категории
+              $prod= Product::getProductsListByCategory($value['id']);
+
+              if (count($prod)>0) {
+                $firstImageOnCategory[]=$prod[0]['id'];
+                  # code...
+              }else $firstImageOnCategory[]='no-image';
+      
+        }
+        // двухмерный массив 
+/*
+        $result[]=$categories;
+        $result[]=$firstImageOnCategory;*/
+    
+
+        // Подключаем вид
+        require_once(PATH_TO_SITE . '/views/catalog/catalogs.php');
+        return true;
+    }
 }

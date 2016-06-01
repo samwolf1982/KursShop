@@ -20,7 +20,7 @@ class ProductController
         $product = Product::getProductById($productId);
 
         // Подключаем вид
-        require_once(ROOT . '/views/product/view.php');
+        require_once(PATH_TO_SITE . '/views/product/view.php');
         return true;
     }
 

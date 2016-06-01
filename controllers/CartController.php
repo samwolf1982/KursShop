@@ -70,7 +70,7 @@ class CartController
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/cart/index.php');
+        require_once(PATH_TO_SITE . '/views/cart/index.php');
         return true;
     }
 
@@ -158,7 +158,7 @@ class CartController
         }
 
         // Подключаем вид
-        require_once(ROOT . '/views/cart/checkout.php');
+        require_once(PATH_TO_SITE . '/views/cart/checkout.php');
         return true;
     }
 

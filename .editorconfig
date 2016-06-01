@@ -1,6 +1,6 @@
 # editorconfig.org
 
-root = true
+PATH_TO_SITE = true
 
 [*]
 charset = utf-8
